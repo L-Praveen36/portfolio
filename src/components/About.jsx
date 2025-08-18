@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import Lottie from "lottie-react";
 import { X } from "lucide-react";
 
@@ -49,11 +49,8 @@ function AboutSection({ darkMode }) {
   }, [activeCard]);
 
   return (
-    <section
-      id="about"
-      className="relative min-h-screen py-20 overflow-hidden"
-    >
-      {/* Floating background blobs (from Hero theme) */}
+    <section id="about" className="relative min-h-screen py-20 overflow-hidden">
+      {/* Floating background blobs (Hero theme) */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-20">
           <div className="absolute top-24 left-24 w-40 h-40 rounded-full bg-purple-500 mix-blend-overlay filter blur-3xl floating"></div>
@@ -74,16 +71,10 @@ function AboutSection({ darkMode }) {
               }`}
             >
               Hi there, I’m{" "}
-              <span className="font-semibold text-blue-600">Praveen</span> —
-              skilled in{" "}
-              <span className="font-bold text-blue-600">
-                Full stack web development
-              </span>{" "}
+              <span className="font-semibold text-blue-600">Praveen</span> — skilled in{" "}
+              <span className="font-bold text-blue-600">Full stack web development</span>{" "}
               and quick to adapt to new environments. Strongly collaborative and
-              interested in a{" "}
-              <span className="font-bold text-blue-600">
-                Software Developer
-              </span>{" "}
+              interested in a <span className="font-bold text-blue-600">Software Developer</span>{" "}
               role to enhance product experiences.
             </p>
             <a
@@ -95,7 +86,7 @@ function AboutSection({ darkMode }) {
             </a>
           </div>
 
-          {/* Profile Photo */}
+          {/* Profile Photo (enlarged) */}
           <div className="md:w-[30%] w-full flex justify-center">
             <div className="w-60 h-60 rounded-full overflow-hidden bg-gradient-to-b from-gray-100 to-gray-200 shadow-2xl">
               <img
@@ -107,85 +98,123 @@ function AboutSection({ darkMode }) {
           </div>
         </div>
 
-        {/* Skill Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-          {skills.map((skill, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.05, y: -4 }}
-              onClick={() => setActiveCard(idx)}
-              className={`cursor-pointer rounded-2xl p-6 ${
-                darkMode ? "glass" : "glass-light"
-              } shadow-md transition flex flex-col items-center`}
-              style={{ minHeight: "220px" }}
-            >
-              <Lottie
-                animationData={skill.anim}
-                loop={false}
-                className="w-20 h-20 mb-2"
-              />
-              <h4 className="text-lg font-bold mb-2 text-center">
-                {skill.title}
-              </h4>
-              <p
-                className={`text-center ${
-                  darkMode ? "text-gray-300" : "text-gray-600"
-                }`}
-              >
-                {skill.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        {/* Cards + Modal in a shared layout group for smooth expansion */}
+        <LayoutGroup>
+          {/* Skill Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+            {skills.map((skill, idx) => {
+              const isActive = activeCard === idx;
 
-        {/* Modal */}
-        <AnimatePresence>
-          {activeCard !== null && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.25 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black backdrop-blur-md z-40"
-                onClick={() => setActiveCard(null)}
-              />
-              <motion.div
-                initial={{ opacity: 0, scale: 0.85, y: 60 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.85, y: 60 }}
-                transition={{ duration: 0.3 }}
-                className={`fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 ${
-                  darkMode ? "glass" : "glass-light"
-                } rounded-3xl shadow-2xl px-8 py-9 flex flex-col items-center max-w-md relative`}
-                style={{ maxHeight: "90vh", overflowY: "auto" }}
-              >
-                {/* X Close Button */}
-                <button
+              // While the modal is open for this card, render a hidden placeholder
+              // to avoid duplicate layoutId mounts and preserve grid layout.
+              if (isActive) {
+                return (
+                  <div
+                    key={idx}
+                    className="rounded-2xl p-6 opacity-0 pointer-events-none"
+                    style={{ minHeight: "220px" }}
+                  />
+                );
+              }
+
+              return (
+                <motion.div
+                  key={idx}
+                  layoutId={`card-${idx}`}
+                  onClick={() => setActiveCard(idx)}
+                  whileHover={{ scale: 1.05, y: -4 }}
+                  transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                  className={`cursor-pointer rounded-2xl p-6 ${
+                    darkMode ? "glass" : "glass-light"
+                  } shadow-md transition flex flex-col items-center`}
+                  style={{ minHeight: "220px" }}
+                >
+                  <motion.div layoutId={`anim-${idx}`}>
+                    <Lottie
+                      animationData={skill.anim}
+                      loop={false}
+                      className="w-20 h-20 mb-2"
+                    />
+                  </motion.div>
+
+                  <motion.h4
+                    layoutId={`title-${idx}`}
+                    className="text-lg font-bold mb-2 text-center"
+                  >
+                    {skill.title}
+                  </motion.h4>
+
+                  <motion.p
+                    layoutId={`desc-${idx}`}
+                    className={`text-center ${
+                      darkMode ? "text-gray-300" : "text-gray-600"
+                    }`}
+                  >
+                    {skill.desc}
+                  </motion.p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Modal (expands out from the card and collapses back) */}
+          <AnimatePresence>
+            {activeCard !== null && (
+              <>
+                {/* Backdrop */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.35 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 bg-black backdrop-blur-md z-40"
                   onClick={() => setActiveCard(null)}
-                  className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-                >
-                  <X className="w-6 h-6 text-gray-600 dark:text-gray-300" />
-                </button>
-
-                <Lottie
-                  animationData={skills[activeCard].anim}
-                  loop={true}
-                  className="w-32 h-32 mb-4"
                 />
-                <h4 className="text-2xl font-bold mb-3">
-                  {skills[activeCard].title}
-                </h4>
-                <p
-                  className={`text-center ${
-                    darkMode ? "text-gray-300" : "text-gray-700"
-                  }`}
+
+                {/* Expanded card as modal */}
+                <motion.div
+                  layoutId={`card-${activeCard}`}
+                  transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                  className={`fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${
+                    darkMode ? "glass" : "glass-light"
+                  } rounded-3xl shadow-2xl px-8 py-9 flex flex-col items-center max-w-md w-[90%] relative`}
+                  style={{ maxHeight: "90vh", overflowY: "auto" }}
                 >
-                  {skills[activeCard].details}
-                </p>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
+                  {/* X Close */}
+                  <button
+                    onClick={() => setActiveCard(null)}
+                    className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                  >
+                    <X className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+                  </button>
+
+                  <motion.div layoutId={`anim-${activeCard}`}>
+                    <Lottie
+                      animationData={skills[activeCard].anim}
+                      loop={true}
+                      className="w-32 h-32 mb-4"
+                    />
+                  </motion.div>
+
+                  <motion.h4
+                    layoutId={`title-${activeCard}`}
+                    className="text-2xl font-bold mb-3 text-center"
+                  >
+                    {skills[activeCard].title}
+                  </motion.h4>
+
+                  <motion.p
+                    layoutId={`desc-${activeCard}`}
+                    className={`text-center ${
+                      darkMode ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
+                    {skills[activeCard].details}
+                  </motion.p>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
+        </LayoutGroup>
       </div>
     </section>
   );
