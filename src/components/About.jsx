@@ -3,7 +3,7 @@ import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import Lottie from "lottie-react";
 import { X } from "lucide-react";
 
-// Import animations
+// Import your Lottie animation JSONs here
 import fullstackAnim from "../assets/fullstack.json";
 import techAnim from "../assets/UIUX Designer.json";
 import problemAnim from "../assets/UIUX Designer.json";
@@ -50,13 +50,11 @@ function AboutSection({ darkMode }) {
 
   return (
     <section id="about" className="relative min-h-screen py-20 overflow-hidden">
-      {/* Floating background blobs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-20">
-          <div className="absolute top-24 left-24 w-40 h-40 rounded-full bg-purple-500 mix-blend-overlay filter blur-3xl floating"></div>
-          <div className="absolute top-1/2 right-1/4 w-32 h-32 rounded-full bg-indigo-500 mix-blend-overlay filter blur-3xl floating-delay-1"></div>
-          <div className="absolute bottom-24 right-24 w-52 h-52 rounded-full bg-blue-500 mix-blend-overlay filter blur-3xl floating-delay-2"></div>
-        </div>
+      {/* Floating background blobs (optional, can comment out) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+        <div className="absolute top-24 left-24 w-40 h-40 rounded-full bg-purple-500 mix-blend-overlay filter blur-3xl"></div>
+        <div className="absolute top-1/2 right-1/4 w-32 h-32 rounded-full bg-indigo-500 mix-blend-overlay filter blur-3xl"></div>
+        <div className="absolute bottom-24 right-24 w-52 h-52 rounded-full bg-blue-500 mix-blend-overlay filter blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col gap-16">
@@ -102,7 +100,7 @@ function AboutSection({ darkMode }) {
         {/* Skill Cards + Modal */}
         <LayoutGroup>
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 relative">
             {skills.map((skill, idx) => (
               <motion.div
                 key={idx}
@@ -115,46 +113,46 @@ function AboutSection({ darkMode }) {
                 transition={{ type: "spring", stiffness: 380, damping: 28 }}
                 className={`cursor-pointer rounded-2xl p-6 ${
                   darkMode ? "glass" : "glass-light"
-                } shadow-md transition flex flex-col items-center`}
-                style={{ minHeight: "220px" }}
+                } shadow-md transition flex flex-col items-center relative`}
+                style={{ minHeight: "220px", zIndex: activeCard === idx ? 51 : 1 }}
               >
-                <motion.div
-                  layoutId={`anim-${idx}`}
-                  transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                >
-                  <Lottie
-                    animationData={skill.anim}
-                    loop={false}
-                    className="w-20 h-20 mb-2"
-                  />
-                </motion.div>
-
-                <motion.h4
-                  layoutId={`title-${idx}`}
-                  transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                  className="text-lg font-bold mb-2 text-center"
-                >
-                  {skill.title}
-                </motion.h4>
-
-                <motion.p
-                  layoutId={`desc-${idx}`}
-                  transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                  className={`text-center ${
-                    darkMode ? "text-gray-300" : "text-gray-600"
-                  }`}
-                >
-                  {skill.desc}
-                </motion.p>
+                {activeCard === idx ? (
+                  // Expanded Card: rendered in-place (not fixed!)
+                  <motion.div
+                    layoutId={`card-${idx}`}
+                    className={`absolute inset-0 rounded-3xl shadow-2xl px-8 py-9 flex flex-col items-center max-w-md w-full h-full glass`}
+                    style={{ zIndex: 51, background: darkMode ? "rgba(24,24,32,0.96)" : "rgba(255,255,255,0.95)" }}
+                  >
+                    {/* Close Button */}
+                    <button
+                      onClick={() => setActiveCard(null)}
+                      className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                    >
+                      <X className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+                    </button>
+                    <Lottie
+                      animationData={skill.anim}
+                      loop={true}
+                      className="w-32 h-32 md:w-48 md:h-48 mb-4"
+                    />
+                    <h4 className="text-2xl font-bold mb-3 text-center">{skill.title}</h4>
+                    <p className={`text-center mt-4 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+                      {skill.details}
+                    </p>
+                  </motion.div>
+                ) : (
+                  // Normal Card
+                  <>
+                    <Lottie animationData={skill.anim} loop={false} className="w-20 h-20 mb-2" />
+                    <h4 className="text-lg font-bold mb-2 text-center">{skill.title}</h4>
+                    <p className={`text-center ${darkMode ? "text-gray-300" : "text-gray-600"}`}>{skill.desc}</p>
+                  </>
+                )}
               </motion.div>
             ))}
-          </div>
-
-          {/* Modal */}
-          <AnimatePresence>
-            {activeCard !== null && (
-              <>
-                {/* Backdrop */}
+            {/* Backdrop (shows when any card is expanded) */}
+            <AnimatePresence>
+              {activeCard !== null && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.35 }}
@@ -162,56 +160,9 @@ function AboutSection({ darkMode }) {
                   className="fixed inset-0 bg-black backdrop-blur-md z-40"
                   onClick={() => setActiveCard(null)}
                 />
-
-                {/* Expanded Card */}
-                <motion.div
-                  layoutId={`card-${activeCard}`}
-                  transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                  className={`fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${
-                    darkMode ? "glass" : "glass-light"
-                  } rounded-3xl shadow-2xl px-8 py-9 flex flex-col items-center max-w-md w-[90%] relative`}
-                  style={{ maxHeight: "90vh", overflowY: "auto" }}
-                >
-                  {/* Close Button */}
-                  <button
-                    onClick={() => setActiveCard(null)}
-                    className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-                  >
-                    <X className="w-6 h-6 text-gray-600 dark:text-gray-300" />
-                  </button>
-
-                  <motion.div
-                    layoutId={`anim-${activeCard}`}
-                    transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                  >
-                    <Lottie
-                      animationData={skills[activeCard].anim}
-                      loop={true}
-                      className="w-32 h-32 md:w-48 md:h-48 mb-4"
-                    />
-                  </motion.div>
-
-                  <motion.h4
-                    layoutId={`title-${activeCard}`}
-                    transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                    className="text-2xl font-bold mb-3 text-center"
-                  >
-                    {skills[activeCard].title}
-                  </motion.h4>
-
-                  <motion.p
-                    layoutId={`desc-${activeCard}`}
-                    transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                    className={`text-center mt-4 ${
-                      darkMode ? "text-gray-300" : "text-gray-700"
-                    }`}
-                  >
-                    {skills[activeCard].details}
-                  </motion.p>
-                </motion.div>
-              </>
-            )}
-          </AnimatePresence>
+              )}
+            </AnimatePresence>
+          </div>
         </LayoutGroup>
       </div>
     </section>
