@@ -3,7 +3,7 @@ import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import Lottie from "lottie-react";
 import { X } from "lucide-react";
 
-// Import your actual Lottie animations here
+// Replace below with your actual Lottie animations
 import fullstackAnim from "../assets/fullstack.json";
 import techAnim from "../assets/UIUX Designer.json";
 import problemAnim from "../assets/UIUX Designer.json";
@@ -45,21 +45,21 @@ function AboutSection({ darkMode }) {
   }, [activeCard]);
 
   return (
-    <section id="about" className="relative min-h-screen py-20 overflow-hidden">
-      {/* Floating blobs for decoration - optional */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+    <section id="about" className="relative min-h-screen py-20 overflow-visible">
+      {/* Decorative Blobs (optional, remove if not needed) */}
+      <div className="absolute inset-0 pointer-events-none select-none">
         <div className="absolute top-24 left-24 w-40 h-40 rounded-full bg-purple-500 mix-blend-overlay filter blur-3xl"></div>
         <div className="absolute top-1/2 right-1/4 w-32 h-32 rounded-full bg-indigo-500 mix-blend-overlay filter blur-3xl"></div>
         <div className="absolute bottom-24 right-24 w-52 h-52 rounded-full bg-blue-500 mix-blend-overlay filter blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col gap-16">
-        {/* Top Section: About Text & Profile */}
+        {/* Top Section */}
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="md:w-[70%] w-full">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">About Me</h2>
             <p className={`text-[1.15rem] leading-relaxed mb-6 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
-              Hi there, I’m <span className="font-semibold text-blue-600">Praveen</span> — skilled in <span className="font-bold text-blue-600">Full stack web development</span> and quick to adapt to new environments. Strongly collaborative and interested in a <span className="font-bold text-blue-600">Software Developer</span> role to enhance product experiences.
+              Hi there, I’m <span className="font-semibold text-blue-600">Praveen</span> — skilled in <span className="font-bold text-blue-600">Full stack web development</span> and quick to adapt to new environments. Strongly collaborative and interested in a <span className="font-bold text-blue-600">Software Developer</span> role to enhance product experiences. Well-acquainted with HR methodologies.
             </p>
             <a
               href="/Resume.pdf"
@@ -80,9 +80,9 @@ function AboutSection({ darkMode }) {
           </div>
         </div>
 
-        {/* Skill Cards Grid */}
+        {/* Skill Cards */}
         <LayoutGroup>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 relative min-h-[260px] md:min-h-[260px] lg:min-h-[260px]">
             {skills.map((skill, idx) => (
               <motion.div
                 key={idx}
@@ -94,49 +94,50 @@ function AboutSection({ darkMode }) {
                   y: activeCard === idx ? 0 : -4,
                 }}
                 transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                className={`cursor-pointer rounded-2xl p-6 ${darkMode ? "glass" : "glass-light"} shadow-md transition flex flex-col items-center relative`}
+                className={`cursor-pointer rounded-2xl p-6 ${darkMode ? "glass" : "glass-light"} shadow-md flex flex-col items-center relative overflow-visible`}
                 style={{ minHeight: "220px", zIndex: activeCard === idx ? 60 : 1 }}
               >
-                {/* Expanded card overlays grid slot with smooth transition */}
                 <AnimatePresence>
                   {activeCard === idx ? (
                     <motion.div
                       layout
                       layoutId={`card-${idx}`}
-                      initial={{ scale: 0.98, opacity: 0 }}
-                      animate={{ scale: 1.08, opacity: 1 }}
-                      exit={{ scale: 0.98, opacity: 0 }}
+                      initial={{
+                        opacity: 0,
+                        scale: 0.96,
+                        y: 40,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        scale: 1.07,
+                        y: -110, // Pops upwards above card (adjust as needed for your grid height)
+                      }}
+                      exit={{
+                        opacity: 0,
+                        scale: 0.96,
+                        y: 40,
+                      }}
                       transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                      className={`absolute inset-0 rounded-3xl shadow-2xl px-8 py-9 flex flex-col items-center w-full h-full ${darkMode ? "glass" : "glass-light"}`}
+                      className={`absolute left-1/2 top-0 transform -translate-x-1/2 rounded-3xl shadow-2xl px-8 py-9 flex flex-col items-center w-[340px] sm:w-[360px] glass`}
                       style={{
-                        zIndex: 61,
+                        zIndex: 70,
                         background: darkMode ? "rgba(30,32,45,0.98)" : "rgba(255,255,255,0.97)",
                         boxShadow: "0 8px 32px rgba(32,32,64,0.25)",
                       }}
                     >
-                      {/* Close Button */}
                       <button
                         onClick={() => setActiveCard(null)}
                         className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                       >
                         <X className="w-6 h-6 text-gray-600 dark:text-gray-300" />
                       </button>
-                      <motion.div
-                        layoutId={`anim-${idx}`}
-                        className="mb-4"
-                      >
+                      <motion.div layoutId={`anim-${idx}`} className="mb-4">
                         <Lottie animationData={skill.anim} loop={true} className="w-32 h-32 md:w-48 md:h-48" />
                       </motion.div>
-                      <motion.h4
-                        layoutId={`title-${idx}`}
-                        className="text-2xl font-bold mb-3 text-center"
-                      >
+                      <motion.h4 layoutId={`title-${idx}`} className="text-2xl font-bold mb-3 text-center">
                         {skill.title}
                       </motion.h4>
-                      <motion.p
-                        layoutId={`desc-${idx}`}
-                        className={`text-center mt-4 ${darkMode ? "text-gray-300" : "text-gray-700"}`}
-                      >
+                      <motion.p layoutId={`desc-${idx}`} className={`text-center mt-4 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
                         {skill.details}
                       </motion.p>
                     </motion.div>
@@ -154,7 +155,7 @@ function AboutSection({ darkMode }) {
                 </AnimatePresence>
               </motion.div>
             ))}
-            {/* Backdrop over everything when modal is open */}
+            {/* Backdrop over page when modal is open */}
             <AnimatePresence>
               {activeCard !== null && (
                 <motion.div
