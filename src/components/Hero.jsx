@@ -29,7 +29,7 @@ function Hero({ darkMode }) {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">
               Hi, I'm{" "}
               <span className="gradient-text">Lunavath Praveen Kumar</span>
             </h1>
@@ -41,8 +41,8 @@ function Hero({ darkMode }) {
                 darkMode ? "text-gray-300" : "text-gray-600"
               }`}
             >
-              B.Tech Mathematics & Computing @ IIT Indore | Full-Stack &
-              AI Enthusiast
+              B.Tech Mathematics & Computing @ IIT Indore 
+               Full-Stack & AI Enthusiast
             </motion.p>
 
             {/* Buttons */}
