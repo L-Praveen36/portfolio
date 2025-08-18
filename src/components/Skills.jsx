@@ -15,7 +15,7 @@ const skillGroups = [
       { name: "HTML 5", icon: "/html.png" },
       { name: "CSS 3", icon: "/css.svg" },
 
-      { name: "Javascript", icon: "/Javascript.png" },
+      { name: "Javascript", icon: "/JavaScript.png" },
     
       { name: "React Js", icon: "/react.jpeg" },
       { name: "Node Js", icon: "/node.js.png" },
