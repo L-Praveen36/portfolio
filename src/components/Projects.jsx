@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export default function projects({ darkMode, activeTab, setActiveTab }) {
+export default function Projects({ darkMode, activeTab, setActiveTab }) {
   const projects = [
     {
       title: "Decentralized Crowdfunding Platform",
@@ -42,7 +42,7 @@ export default function projects({ darkMode, activeTab, setActiveTab }) {
       : projects.filter((project) => project.tags.includes(activeTab));
 
   return (
-    <section id="projects" className="snap-section min-h-screen relative py-20">
+    <section id="projects" className="min-h-screen py-20">
       <div className="max-w-7xl mx-auto px-6">
         {/* Title */}
         <motion.div
@@ -77,17 +77,21 @@ export default function projects({ darkMode, activeTab, setActiveTab }) {
               <motion.button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.07 }}
+                whileTap={{ scale: 0.97 }}
                 className={`px-6 py-2 rounded-full font-medium capitalize ${
                   activeTab === tab
                     ? `${
-                        darkMode ? "bg-indigo-600" : "bg-indigo-500"
+                        darkMode
+                          ? "bg-indigo-600"
+                          : "bg-indigo-500"
                       } text-white`
                     : `${
-                        darkMode ? "text-gray-300" : "text-gray-600"
+                        darkMode
+                          ? "text-gray-300"
+                          : "text-gray-600"
                       }`
-                }`}
+                } transition-all`}
               >
                 {tab}
               </motion.button>
@@ -95,24 +99,27 @@ export default function projects({ darkMode, activeTab, setActiveTab }) {
           </div>
         </motion.div>
 
-        {/* Project Cards */}
+        {/* Project Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-              className={`glass rounded-3xl overflow-hidden hover-tilt glow-hover ${
+              initial={{ opacity: 0, y: 40, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.08 }}
+              whileHover={{
+                y: -6,
+                scale: 1.03,
+                boxShadow: "0 8px 32px 0 rgba(60,99,246,0.15)", // subtle glow
+              }}
+              className={`glass rounded-3xl overflow-hidden transition-all shadow-md hover:shadow-xl ${
                 darkMode ? "" : "glass-light"
               }`}
             >
               {/* Project Banner */}
-              <div className="h-48 bg-gradient-to-r from-indigo-500 to-purple-600 relative">
+              <div className="h-40 bg-gradient-to-r from-indigo-500 to-purple-600 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-6xl opacity-20">💻</div>
+                  <div className="text-6xl opacity-15 select-none pointer-events-none">💻</div>
                 </div>
               </div>
 
@@ -126,7 +133,6 @@ export default function projects({ darkMode, activeTab, setActiveTab }) {
                 >
                   {project.description}
                 </p>
-
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag, i) => (
@@ -142,17 +148,16 @@ export default function projects({ darkMode, activeTab, setActiveTab }) {
                     </span>
                   ))}
                 </div>
-
-                {/* Buttons */}
+                {/* Action Buttons */}
                 <div className="flex gap-4">
                   {/* GitHub Button */}
                   <motion.a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`px-4 py-2 rounded-full flex items-center gap-2 ${
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.96 }}
+                    className={`px-4 py-2 rounded-full flex items-center gap-2 transition-all ${
                       darkMode
                         ? "bg-gray-800 hover:bg-gray-700"
                         : "bg-gray-100 hover:bg-gray-200"
@@ -172,16 +177,15 @@ export default function projects({ darkMode, activeTab, setActiveTab }) {
                     </svg>
                     <span>GitHub</span>
                   </motion.a>
-
                   {/* Live Demo Button */}
                   {project.live && (
                     <motion.a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`px-4 py-2 rounded-full flex items-center gap-2 ${
+                      whileHover={{ scale: 1.08 }}
+                      whileTap={{ scale: 0.96 }}
+                      className={`px-4 py-2 rounded-full flex items-center gap-2 transition-all ${
                         darkMode
                           ? "bg-indigo-600 hover:bg-indigo-700"
                           : "bg-indigo-500 hover:bg-indigo-600"

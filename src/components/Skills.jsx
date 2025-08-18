@@ -29,7 +29,7 @@ const skillGroups = [
       { name: "Git", icon: "/git.jpeg" },
       { name: "GitHub", icon: "/github.png" },
       { name: "Netlify", icon: "/Netlify.png" },
-      { name: "Postman", icon: "/Render.jpg" },
+      { name: "Render", icon: "/Render.jpg" },
     ],
   },
 ];
