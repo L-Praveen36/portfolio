@@ -1,58 +1,89 @@
 import { motion } from "framer-motion";
 
-const skills = {
-  Languages: ["C++", "Python"],
-  Fundamentals: ["Data Structures & Algorithms", "OOP"],
-  "Web Development": ["React.js", "HTML", "CSS", "JavaScript", "UI/UX"],
-  "Database & Auth": ["MongoDB", "Firebase Auth"],
-  Tools: ["VS Code", "GitHub", "Netlify", "Render"],
-};
+// Skill groups and items
+const skillGroups = [
+  {
+    title: "Languages",
+    skills: [
+      { name: "C++", icon: "/c++.png" },
+      { name: "Python", icon: "/python.jpeg" },
+    ],
+  },
+  {
+    title: "Web Development",
+    skills: [
+      { name: "HTML 5", icon: "/html.png" },
+      { name: "CSS 3", icon: "/css.svg" },
 
-export default function Skills() {
+      { name: "Javascript", icon: "/Javascript.png" },
+    
+      { name: "React Js", icon: "/react.jpeg" },
+      { name: "Node Js", icon: "/node.js.png" },
+      { name: "Express Js", icon: "/ExpressJS.webp" },
+      { name: "Mongo Db", icon: "/mongodb.png" },
+    ],
+  },
+  {
+    title: "Tools",
+    skills: [
+      { name: "Git", icon: "/git.jpeg" },
+      { name: "GitHub", icon: "/github.png" },
+      { name: "Netlify", icon: "/Netlify.png" },
+      { name: "Postman", icon: "/Render.jpg" },
+    ],
+  },
+];
+
+export default function SkillsSection({ darkMode }) {
   return (
-    <section id="skills" className="py-20 md:py-28 bg-white dark:bg-black">
-      <div className="container mx-auto px-6 max-w-6xl">
-        {/* Title */}
+    <section id="skills" className={`py-20 md:py-28 ${darkMode ? "bg-black" : "bg-white"}`}>
+      <div className="container mx-auto px-6 max-w-7xl">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-3xl md:text-4xl font-bold text-center mb-12"
+          transition={{ duration: 0.7 }}
+          className="text-4xl md:text-5xl font-bold text-center mb-10"
         >
-          ⚡ Skills & Tools
+          Skills <span className="text-indigo-600">&amp; Experience</span>
         </motion.h2>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {Object.entries(skills).map(([category, list], i) => (
-            <motion.div
-              key={category}
-              initial={{ opacity: 0, y: 40 }}
+        {skillGroups.map((group, sectionIdx) => (
+          <div key={group.title} className="mb-12">
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: i * 0.2 }}
-              whileHover={{ scale: 1.02 }}
-              className="p-6 rounded-2xl backdrop-blur-xl bg-white/50 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-700 shadow-lg transition"
+              transition={{ duration: 0.6, delay: sectionIdx * 0.12 }}
+              className="text-2xl font-semibold mb-7 text-left"
+              style={{ color: darkMode ? "#a5b4fc" : "#3730a3" }}
             >
-              {/* Category */}
-              <h3 className="text-xl font-semibold mb-4 text-indigo-600 dark:text-indigo-400">
-                {category}
-              </h3>
+              {group.title}
+            </motion.h3>
 
-              {/* Skill Tags */}
-              <div className="flex flex-wrap gap-3">
-                {list.map((skill, idx) => (
-                  <motion.span
-                    key={idx}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    className="px-4 py-2 rounded-full text-sm bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+            <div className="flex flex-wrap gap-x-14 gap-y-10">
+              {group.skills.map(({ name, icon }, idx) => (
+                <motion.div
+                  key={name}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, delay: idx * 0.07 }}
+                  whileHover={{
+                    scale: 1.10,
+                    y: -6,
+                    boxShadow: "0 8px 28px 0 rgba(60,99,246,0.14)", // glow on hover
+                  }}
+                  className="flex flex-col items-center px-2 transition-all"
+                >
+                  <div className="w-24 h-24 rounded-full flex items-center justify-center shadow-md bg-gray-100 dark:bg-gray-900">
+                    <img src={icon} alt={name} className="w-14 h-14 object-contain" />
+                  </div>
+                  <span className="mt-2 text-base text-gray-700 dark:text-gray-300 font-medium">
+                    {name}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
