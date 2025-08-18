@@ -1,30 +1,58 @@
-// AboutSection.jsx
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 function AboutSection({ darkMode }) {
+  const [activeCard, setActiveCard] = useState(null);
+
+  const skills = [
+    {
+      title: "Full-Stack Development",
+      desc: "I design and build scalable, responsive web apps using modern frontend and backend frameworks.",
+      details:
+        "Experienced with React, Next.js, Node.js, Express, and databases like MongoDB & PostgreSQL. I focus on creating seamless user experiences with optimized performance.",
+    },
+    {
+      title: "Blockchain",
+      desc: "Exploring decentralized technologies and smart contract development.",
+      details:
+        "Hands-on with Ethereum, Solidity, and Web3.js. I’m passionate about leveraging blockchain to solve real-world problems.",
+    },
+    {
+      title: "Problem Solving",
+      desc: "Strong foundation in algorithms, data structures, and mathematical problem-solving.",
+      details:
+        "Actively practice competitive programming and enjoy tackling challenging problems that improve logical and analytical skills.",
+    },
+    {
+      title: "Open Source",
+      desc: "Contributor to open-source projects and advocate for collaborative development.",
+      details:
+        "I believe in building together — sharing knowledge and code to push innovation and learning forward.",
+    },
+  ];
+
   return (
     <section id="about" className="snap-section min-h-screen relative py-20">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-16 text-center"
+          className="text-center"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">About Me</h2>
           <div
             className={`w-24 h-1 mx-auto ${
               darkMode ? "bg-indigo-500" : "bg-indigo-400"
             }`}
-          ></div>
+          />
         </motion.div>
 
-        {/* Content Grid */}
+        {/* Main Content Grid */}
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          {/* Text Content */}
+          {/* Left - Text */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -33,7 +61,7 @@ function AboutSection({ darkMode }) {
             className="flex-1"
           >
             <div
-              className={`glass rounded-3xl p-8 hover-tilt glow-hover ${
+              className={`glass rounded-3xl p-8 glow-hover ${
                 darkMode ? "" : "glass-light"
               }`}
             >
@@ -45,78 +73,61 @@ function AboutSection({ darkMode }) {
               >
                 I'm a passionate developer and problem solver currently pursuing
                 my B.Tech in Mathematics & Computing at IIT Indore. My journey
-                in technology began with a curiosity about how things work,
-                which evolved into a love for building digital solutions.
+                in technology began with curiosity, which evolved into a love
+                for building impactful digital solutions.
               </p>
               <p
-                className={`mb-4 ${
+                className={`${
                   darkMode ? "text-gray-300" : "text-gray-600"
                 }`}
               >
-                With expertise in both frontend and backend development, I
-                specialize in creating seamless, user-friendly web applications.
-                My blockchain enthusiasm drives me to explore decentralized
-                technologies and their potential to revolutionize industries.
-              </p>
-              <p className={`${darkMode ? "text-gray-300" : "text-gray-600"}`}>
-                When I'm not coding, you can find me solving mathematical
-                puzzles, contributing to open-source projects, or exploring new
-                technologies in the ever-evolving tech landscape.
+                With expertise in frontend, backend, and blockchain, I aim to
+                create solutions that merge innovation with usability.
               </p>
             </div>
           </motion.div>
 
-          {/* Animation + Skills */}
+          {/* Right - Profile Image */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
-            className="flex-1"
+            className="flex-1 flex justify-center"
           >
             <div
-              className={`glass rounded-3xl p-8 hover-tilt glow-hover ${
+              className={`glass rounded-3xl p-8 flex justify-center glow-hover ${
                 darkMode ? "" : "glass-light"
               }`}
             >
-              {/* Lottie Animation (make sure lottie-player script is loaded in index.html) */}
-              <lottie-player
-                src="https://assets5.lottiefiles.com/packages/lf20_iv4isx3q.json"
-                background="transparent"
-                speed="1"
-                style={{ width: "100%", height: "300px" }}
-                loop
-                autoplay
-              ></lottie-player>
-
-              {/* Skills Pills */}
-              <div className="mt-6 flex flex-wrap gap-4 justify-center">
-                {[
-                  { name: "Full-Stack Development", icon: "💻" },
-                  { name: "Blockchain", icon: "⛓️" },
-                  { name: "Problem Solving", icon: "🧩" },
-                  { name: "Open Source", icon: "📦" },
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ scale: 1.05 }}
-                    className={`px-4 py-2 rounded-full ${
-                      darkMode ? "bg-gray-800" : "bg-gray-100"
-                    } flex items-center gap-2`}
-                  >
-                    <span>{item.icon}</span>
-                    <span
-                      className={`text-sm ${
-                        darkMode ? "text-gray-300" : "text-gray-600"
-                      }`}
-                    >
-                      {item.name}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
+              <img
+                src="/Passport_Photo.jpeg" // replace with your image
+                alt="Profile"
+                className="w-64 h-64 rounded-2xl object-cover shadow-lg"
+              />
             </div>
           </motion.div>
+        </div>
+
+        {/* Bottom Skills Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {skills.map((skill, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ scale: 1.05 }}
+              onClick={() => setActiveCard(activeCard === idx ? null : idx)}
+              className={`cursor-pointer rounded-2xl p-6 transition-all duration-300 ${
+                darkMode ? "bg-gray-800 text-gray-200" : "bg-white text-gray-700"
+              } shadow-md hover:shadow-xl ${
+                activeCard === idx ? "scale-105 ring-2 ring-indigo-500" : ""
+              }`}
+            >
+              <h4 className="text-lg font-semibold mb-2">{skill.title}</h4>
+              <p className="text-sm">
+                {activeCard === idx ? skill.details : skill.desc}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
