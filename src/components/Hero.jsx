@@ -1,37 +1,10 @@
 // HeroSection.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Float } from "@react-three/drei";
+import Lottie from "lottie-react";
+import heroAnimation from "../assets/hero-animation.json"; // download JSON & place in assets
 
 function Hero({ darkMode }) {
-  // Floating 3D Blob Component
-  const FloatingBlob = () => {
-    const meshRef = React.useRef();
-
-    useFrame(({ clock }) => {
-      if (meshRef.current) {
-        meshRef.current.rotation.x = clock.getElapsedTime() * 0.1;
-        meshRef.current.rotation.y = clock.getElapsedTime() * 0.2;
-      }
-    });
-
-    return (
-      <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-        <mesh ref={meshRef}>
-          <sphereGeometry args={[1.5, 32, 32]} />
-          <meshStandardMaterial
-            color="#6366f1"
-            emissive="#6366f1"
-            emissiveIntensity={0.5}
-            roughness={0.3}
-            metalness={0.7}
-          />
-        </mesh>
-      </Float>
-    );
-  };
-
   return (
     <section
       id="home"
@@ -69,7 +42,7 @@ function Hero({ darkMode }) {
               }`}
             >
               B.Tech Mathematics & Computing @ IIT Indore | Full-Stack &
-                                AI Enthusiast
+              AI Enthusiast
             </motion.p>
 
             {/* Buttons */}
@@ -89,7 +62,7 @@ function Hero({ darkMode }) {
                     : "bg-indigo-500 hover:bg-indigo-600"
                 } text-white glow-hover`}
               >
-                 My Resume
+                My Resume
               </motion.a>
               <motion.a
                 href="#projects"
@@ -106,18 +79,14 @@ function Hero({ darkMode }) {
             </motion.div>
           </motion.div>
 
-          {/* 3D Blob */}
+          {/* Lottie Animation */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.9, duration: 0.8 }}
             className="hidden md:block absolute -right-40 -bottom-40 w-96 h-96"
           >
-            <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-              <ambientLight intensity={0.5} />
-              <pointLight position={[10, 10, 10]} intensity={1} />
-              <FloatingBlob />
-            </Canvas>
+            <Lottie animationData={heroAnimation} loop={true} />
           </motion.div>
         </div>
       </div>
