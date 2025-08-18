@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import Lottie from "lottie-react";
+
+// Example placeholder animations (replace with your own JSON files/URLs)
+import fullstackAnim from "../assets/fullstack.json";
+import blockchainAnim from "../assets/blockchain.json";
+import problemAnim from "../assets/UIUX Designer.json";
+import opensourceAnim from "../assets/UIUX Designer.json";
 
 function AboutSection({ darkMode }) {
   const [activeCard, setActiveCard] = useState(null);
@@ -10,24 +17,32 @@ function AboutSection({ darkMode }) {
       desc: "I design and build scalable, responsive web apps using modern frontend and backend frameworks.",
       details:
         "Experienced with React, Next.js, Node.js, Express, and databases like MongoDB & PostgreSQL. I focus on creating seamless user experiences with optimized performance.",
+      anim: fullstackAnim,
+      colors: "from-blue-200 to-blue-400",
     },
     {
       title: "Blockchain",
       desc: "Exploring decentralized technologies and smart contract development.",
       details:
         "Hands-on with Ethereum, Solidity, and Web3.js. I’m passionate about leveraging blockchain to solve real-world problems.",
+      anim: blockchainAnim,
+      colors: "from-purple-200 to-purple-400",
     },
     {
       title: "Problem Solving",
       desc: "Strong foundation in algorithms, data structures, and mathematical problem-solving.",
       details:
         "Actively practice competitive programming and enjoy tackling challenging problems that improve logical and analytical skills.",
+      anim: problemAnim,
+      colors: "from-green-200 to-green-400",
     },
     {
       title: "Open Source",
       desc: "Contributor to open-source projects and advocate for collaborative development.",
       details:
         "I believe in building together — sharing knowledge and code to push innovation and learning forward.",
+      anim: opensourceAnim,
+      colors: "from-pink-200 to-pink-400",
     },
   ];
 
@@ -92,6 +107,7 @@ function AboutSection({ darkMode }) {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            whileHover={{ scale: 1.05, y: -10 }}
             viewport={{ once: true }}
             className="flex-1 flex justify-center"
           >
@@ -114,18 +130,31 @@ function AboutSection({ darkMode }) {
           {skills.map((skill, idx) => (
             <motion.div
               key={idx}
-              whileHover={{ scale: 1.05 }}
               onClick={() => setActiveCard(activeCard === idx ? null : idx)}
-              className={`cursor-pointer rounded-2xl p-6 transition-all duration-300 ${
-                darkMode ? "bg-gray-800 text-gray-200" : "bg-white text-gray-700"
-              } shadow-md hover:shadow-xl ${
-                activeCard === idx ? "scale-105 ring-2 ring-indigo-500" : ""
-              }`}
+              animate={
+                activeCard === idx
+                  ? { scale: 1.1, y: -10 }
+                  : { scale: 1, y: 0 }
+              }
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              className={`cursor-pointer rounded-2xl p-6 shadow-md hover:shadow-xl bg-gradient-to-r ${skill.colors}`}
             >
               <h4 className="text-lg font-semibold mb-2">{skill.title}</h4>
               <p className="text-sm">
                 {activeCard === idx ? skill.details : skill.desc}
               </p>
+
+              {/* Show Lottie animation only when active */}
+              {activeCard === idx && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="mt-4"
+                >
+                  <Lottie animationData={skill.anim} loop={true} className="w-32 h-32 mx-auto" />
+                </motion.div>
+              )}
             </motion.div>
           ))}
         </div>
