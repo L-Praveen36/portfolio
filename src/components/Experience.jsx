@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export default function Experience({ darkMode }) {
+export default function Education({ darkMode }) {
   const education = [
     {
       year: "2021 - Present",
@@ -25,7 +25,7 @@ export default function Experience({ darkMode }) {
   ];
 
   return (
-    <section id="education" className="snap-section min-h-screen relative py-20">
+    <section id="education" className="min-h-screen relative py-20">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <motion.div
@@ -43,59 +43,39 @@ export default function Experience({ darkMode }) {
           ></div>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative timeline">
-          <div className="space-y-12">
-            {education.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className={`relative pl-12 md:pl-0 ${
-                  index % 2 === 0
-                    ? "md:pr-16 md:text-right"
-                    : "md:pl-16 md:text-left"
+        {/* Grid of Education Boxes */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {education.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.92 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: index * 0.15 }}
+              viewport={{ once: true }}
+              className={`glass rounded-2xl p-7 shadow-md hover:shadow-xl glow-hover transition-all flex flex-col ${
+                darkMode ? "" : "glass-light"
+              }`}
+            >
+              <p
+                className={`text-sm font-medium mb-2 ${
+                  darkMode ? "text-indigo-400" : "text-indigo-500"
                 }`}
               >
-                {/* Timeline Dot */}
-                <div
-                  className={`absolute top-2 left-0 md:left-1/2 w-5 h-5 rounded-full ${
-                    darkMode ? "bg-indigo-500" : "bg-indigo-400"
-                  } transform -translate-x-1/2`}
-                ></div>
-
-                {/* Card */}
-                <div
-                  className={`glass rounded-2xl p-6 hover-tilt glow-hover ${
-                    darkMode ? "" : "glass-light"
-                  }`}
-                >
-                  <p
-                    className={`text-sm font-medium mb-1 ${
-                      darkMode ? "text-indigo-400" : "text-indigo-500"
-                    }`}
-                  >
-                    {item.year}
-                  </p>
-                  <h3 className="text-xl font-bold mb-1">{item.degree}</h3>
-                  <p
-                    className={`font-medium mb-2 ${
-                      darkMode ? "text-gray-300" : "text-gray-600"
-                    }`}
-                  >
-                    {item.institution}
-                  </p>
-                  <p
-                    className={`${darkMode ? "text-gray-400" : "text-gray-500"}`}
-                  >
-                    {item.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                {item.year}
+              </p>
+              <h3 className="text-xl font-bold mb-1">{item.degree}</h3>
+              <p
+                className={`font-medium mb-2 ${
+                  darkMode ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
+                {item.institution}
+              </p>
+              <p className={`${darkMode ? "text-gray-400" : "text-gray-500"}`}>
+                {item.description}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
