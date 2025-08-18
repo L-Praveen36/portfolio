@@ -2,182 +2,139 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Lottie from "lottie-react";
 
+// Import your animations and images
 import fullstackAnim from "../assets/fullstack.json";
-import blockchainAnim from "../assets/blockchain.json";
+import techAnim from "../assets/UIUX Designer.json";
 import problemAnim from "../assets/UIUX Designer.json";
-import opensourceAnim from "../assets/UIUX Designer.json";
+import visionaryAnim from "../assets/blockchain.json";
+
+const skills = [
+  {
+    title: "Fullstack Developer",
+    desc: "MERN stack, well versed with React, Node.js, MongoDB, RESTful API's etc.",
+    details: "Experienced in designing and building full-stack web apps. Familiar with React, Node.js, MongoDB, and API integration for scalable solutions.",
+    anim: fullstackAnim,
+    img: "/images/fullstack.png" // or suitable image/icon
+  },
+  {
+    title: "Tech Enthusiast",
+    desc: "Love new technologies and like to explore the field AI and Image Processing.",
+    details: "Always eager to learn and experiment with cutting-edge tech, especially in AI and image processing.",
+    anim: techAnim,
+    img: "/images/tech.png"
+  },
+  {
+    title: "Problem Solver",
+    desc: "Equipped with good analytical and problem solving skills. Creative thinker.",
+    details: "Competent in analytical reasoning and logical problem solving, with a creative mindset for tackling challenges.",
+    anim: problemAnim,
+    img: "/images/problem.png"
+  },
+  {
+    title: "Visionary",
+    desc: "A visionary with good leadership qualities. Aiming to reach new heights.",
+    details: "Focused on future goals, driven and ready to take initiative with leadership and adaptability.",
+    anim: visionaryAnim,
+    img: "/images/visionary.png"
+  },
+];
 
 function AboutSection({ darkMode }) {
   const [activeCard, setActiveCard] = useState(null);
 
-  const skills = [
-    {
-      title: "Full-Stack Development",
-      desc: "I design and build scalable, responsive web apps using modern frontend and backend frameworks.",
-      details:
-        "Experienced with React, Next.js, Node.js, Express, and databases like MongoDB & PostgreSQL. I focus on creating seamless user experiences with optimized performance.",
-      anim: fullstackAnim,
-      colors: "from-blue-200 to-blue-400",
-    },
-    {
-      title: "Blockchain",
-      desc: "Exploring decentralized technologies and smart contract development.",
-      details:
-        "Hands-on with Ethereum, Solidity, and Web3.js. I’m passionate about leveraging blockchain to solve real-world problems.",
-      anim: blockchainAnim,
-      colors: "from-purple-200 to-purple-400",
-    },
-    {
-      title: "Problem Solving",
-      desc: "Strong foundation in algorithms, data structures, and mathematical problem-solving.",
-      details:
-        "Actively practice competitive programming and enjoy tackling challenging problems that improve logical and analytical skills.",
-      anim: problemAnim,
-      colors: "from-green-200 to-green-400",
-    },
-    {
-      title: "Open Source",
-      desc: "Contributor to open-source projects and advocate for collaborative development.",
-      details:
-        "I believe in building together — sharing knowledge and code to push innovation and learning forward.",
-      anim: opensourceAnim,
-      colors: "from-pink-200 to-pink-400",
-    },
-  ];
+  React.useEffect(() => {
+    if (activeCard !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [activeCard]);
 
   return (
-    <section id="about" className="snap-section min-h-screen relative py-20">
+    <section id="about" className="min-h-screen relative py-20">
       <div className="max-w-7xl mx-auto px-6 flex flex-col gap-16">
-        {/* Section Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <h2 className="text-4xl font-bold mb-4 gradient-text">About Me</h2>
-          <div
-            className={`w-24 h-1 mx-auto ${
-              darkMode ? "bg-indigo-500" : "bg-indigo-400"
-            }`}
-          />
-        </motion.div>
 
-        {/* Top Section */}
-        <div className="flex flex-col lg:flex-row items-center gap-12">
-          {/* Left - Text (70%) */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="flex-[0.7]"
-          >
-            <div
-              className={`glass rounded-3xl p-8 glow-hover ${
-                darkMode ? "" : "glass-light"
-              }`}
+        {/* Top About + Profile */}
+        <div className="flex flex-col md:flex-row items-center gap-8">
+          {/* About Text - 70% width */}
+          <div className="md:w-[70%] w-full">
+            <h2 className="text-4xl font-bold mb-4">About Me</h2>
+            <p className="text-[1.2rem] text-gray-700 mb-6 leading-relaxed">
+              Hi there, I’m <span className="font-semibold text-blue-700">Praveen</span> Skilled <span className="font-bold text-blue-700">Full stack web development</span> and quick learner who possesses the ability to adapt with new environments quickly. Looking for a challenging role in industry to utilize my skills and learn. Strongly Collaborative, team player who is proficient in working with interdisciplinary teams and executing goal-oriented projects. Strongly interested in obtaining a <span className="font-bold text-blue-700">Software Developer</span> position to work on enhancing the product experience. And Well-acquainted with HR methodologies.
+            </p>
+            <a
+              href="/Resume.pdf"
+              download
+              className="inline-block border border-blue-700 rounded-md px-7 py-2 text-blue-700 font-semibold hover:bg-blue-700 hover:text-white transition mb-4"
             >
-              <h3 className="text-2xl font-bold mb-4">Who am I?</h3>
-              <p
-                className={`mb-4 ${
-                  darkMode ? "text-gray-300" : "text-gray-600"
-                }`}
-              >
-                I'm a passionate developer and problem solver currently pursuing
-                my B.Tech in Mathematics & Computing at IIT Indore. My journey
-                in technology began with curiosity, which evolved into a love
-                for building impactful digital solutions.
-              </p>
-              <p
-                className={`${
-                  darkMode ? "text-gray-300" : "text-gray-600"
-                }`}
-              >
-                With expertise in frontend, backend, and blockchain, I aim to
-                create solutions that merge innovation with usability.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Right - Image (30%) */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            whileHover={{ scale: 1.05, y: -10 }}
-            viewport={{ once: true }}
-            className="flex-[0.3] flex justify-center"
-          >
-            <div
-              className={`glass rounded-3xl p-6 flex justify-center glow-hover ${
-                darkMode ? "" : "glass-light"
-              }`}
-            >
+              Resume
+            </a>
+          </div>
+          {/* Profile Photo - 30% width, circle frame */}
+          <div className="md:w-[30%] w-full flex justify-center">
+            <div className="w-44 h-44 rounded-full overflow-hidden flex items-center bg-gradient-to-b from-gray-100 to-gray-200 shadow-lg">
               <img
-                src="/Passport_Photo.jpeg"
+                src="/Passport_Photo.jpeg" // set correct path
                 alt="Profile"
-                className="w-56 h-56 rounded-2xl object-cover shadow-lg"
+                className="w-full h-full object-cover"
               />
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Bottom Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Skill Cards / Bottom Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
           {skills.map((skill, idx) => (
             <motion.div
               key={idx}
+              whileHover={{ scale: 1.04, y: -4 }}
               onClick={() => setActiveCard(idx)}
-              whileHover={{ scale: 1.05, y: -5 }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              className={`cursor-pointer rounded-2xl p-6 shadow-md hover:shadow-xl bg-gradient-to-r ${skill.colors}`}
+              className={`cursor-pointer rounded-2xl p-6 bg-white border border-gray-200 shadow-sm transition flex flex-col items-center`}
+              style={{ minHeight: "220px" }}
             >
-              <h4 className="text-lg font-semibold mb-2">{skill.title}</h4>
-              <p className="text-sm">{skill.desc}</p>
+              {/* Replace with your SVG or image */}
+              {/* <img src={skill.img} className="w-[70px] h-[70px] mb-4" alt={skill.title} /> */}
+              <Lottie animationData={skill.anim} loop={false} className="w-20 h-20 mb-2" />
+              <h4 className="text-lg font-bold mb-2 text-center">{skill.title}</h4>
+              <p className="text-gray-600 text-center">{skill.desc}</p>
             </motion.div>
           ))}
         </div>
-      </div>
 
-      {/* Expanded Card Modal */}
-      <AnimatePresence>
-        {activeCard !== null && (
-          <motion.div
-            className="fixed inset-0 flex justify-center items-center z-50 backdrop-blur-sm bg-black/40"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActiveCard(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className={`bg-white dark:bg-gray-900 rounded-2xl p-8 max-w-lg w-full shadow-2xl`}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h3 className="text-2xl font-bold mb-4">
-                {skills[activeCard].title}
-              </h3>
-              <p className="mb-4">{skills[activeCard].details}</p>
-              <Lottie
-                animationData={skills[activeCard].anim}
-                loop={true}
-                className="w-40 h-40 mx-auto"
-              />
-              <button
+        {/* Modal (Card Details) */}
+        <AnimatePresence>
+          {activeCard !== null && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.17 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black backdrop-blur-md z-40"
                 onClick={() => setActiveCard(null)}
-                className="mt-6 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.82, y: 60 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.82, y: 60 }}
+                transition={{ duration: 0.3 }}
+                className="fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 bg-white rounded-3xl shadow-2xl px-8 py-9 flex flex-col items-center max-w-md"
+                style={{ maxHeight: '90vh', overflowY: 'auto' }}
               >
-                Close
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <Lottie animationData={skills[activeCard].anim} loop={true} className="w-32 h-32 mb-4" />
+                <h4 className="text-2xl font-bold mb-3">{skills[activeCard].title}</h4>
+                <p className="text-gray-700 text-center">{skills[activeCard].details}</p>
+                <button
+                  className="mt-7 px-6 py-2 rounded bg-blue-700 text-white font-semibold hover:bg-blue-800 transition"
+                  onClick={() => setActiveCard(null)}
+                >
+                  Close
+                </button>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+      </div>
     </section>
   );
 }
