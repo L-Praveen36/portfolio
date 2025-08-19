@@ -10,32 +10,40 @@ export default function Projects({ darkMode }) {
       description:
         "A blockchain-based crowdfunding platform built with Solidity, React, and Web3.js that allows users to create and fund projects transparently.",
       tags: ["blockchain", "web"],
-      github: "#",
+      banner: "/crowdfunding.svg", // Or .png/.jpg as needed
+      github: "https://github.com/L-Praveen36/Decentralized-Crowdfunding",
       live: null,
+      tech: ["Solidity", "React", "Web3.js", "Ethereum"],
     },
     {
       title: "Lost and Found Management System",
       description:
         "A full-stack web application for managing lost and found items with user authentication, image uploads, and real-time notifications.",
       tags: ["web"],
-      github: "#",
-      live: "#",
+      banner: "/lostfound.png",
+      github: "https://github.com/L-Praveen36/lostfound",
+      live: "https://lostfoundapi.netlify.app/",
+      tech: ["React", "Node.js", "MongoDB", "JWT", "Cloudinary", "Netlify", "Render"],
     },
     {
       title: "AI-Powered Math Solver",
       description:
         "An application that uses machine learning to solve complex mathematical problems and provide step-by-step explanations.",
       tags: ["web"],
+      banner: "/math.svg",
       github: "#",
       live: null,
+      tech: ["Python", "Flask", "scikit-learn", "React"],
     },
     {
       title: "NFT Marketplace",
       description:
         "A decentralized marketplace for buying and selling NFTs with integrated wallet connectivity and bidding system.",
       tags: ["blockchain"],
+      banner: "/projects/nftmarket.svg",
       github: "#",
       live: null,
+      tech: ["Solidity", "React", "Web3.js", "IPFS", "MetaMask"],
     },
   ];
 
@@ -90,34 +98,49 @@ export default function Projects({ darkMode }) {
           </div>
         </motion.div>
 
-        {/* Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40, scale: 0.96 }}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, delay: index * 0.08 }}
-              whileHover={{
-                y: -6,
-                scale: 1.03,
-                boxShadow: "0 8px 32px 0 rgba(60,99,246,0.15)",
-              }}
-              className={`glass rounded-3xl overflow-hidden transition-all shadow-md hover:shadow-xl ${darkMode ? "" : "glass-light"}`}
+              transition={{ duration: 0.7, delay: index * 0.13 }}
+              viewport={{ once: true }}
+              className={`glass rounded-3xl py-0 px-7 shadow-lg hover:shadow-2xl glow-hover flex flex-col items-center gap-3 h-[430px] transition-all ${
+                darkMode ? "" : "glass-light"
+              }`}
             >
               {/* Project Banner */}
-              <div className="h-40 bg-gradient-to-r from-indigo-500 to-purple-600 relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-6xl opacity-15 select-none pointer-events-none">💻</div>
-                </div>
+              <div
+                className="w-full h-36 rounded-t-3xl flex items-center justify-center bg-center bg-cover bg-no-repeat border-b"
+                style={{
+                  backgroundImage: `url('${project.banner}')`,
+                  borderBottom: darkMode
+                    ? "1px solid #23253a"
+                    : "1px solid #ecebfc",
+                }}
+              >
+                {/* Optional: fallback text if image fails */}
               </div>
-              {/* Project Info */}
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                <p className={`mb-4 ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
+              <div className="flex flex-col flex-1 w-full items-center mt-4">
+                <h3 className="text-xl font-bold mb-1 text-center">{project.title}</h3>
+                <p className={`mb-1 text-center ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
+                {/* Tech Stack */}
+                <div className="flex flex-wrap justify-center gap-2 mb-2 mt-2">
+                  {project.tech.map((stack, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-800 dark:text-indigo-200 text-xs font-semibold"
+                    >
+                      {stack}
+                    </span>
+                  ))}
+                </div>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-2">
                   {project.tags.map((tag, i) => (
                     <span
                       key={i}
@@ -131,7 +154,8 @@ export default function Projects({ darkMode }) {
                     </span>
                   ))}
                 </div>
-                <div className="flex gap-4">
+                {/* Buttons */}
+                <div className="flex gap-4 mt-auto">
                   <motion.a
                     href={project.github}
                     target="_blank"
