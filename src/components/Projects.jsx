@@ -10,10 +10,10 @@ export default function Projects({ darkMode }) {
       description:
         "A blockchain-based crowdfunding platform built with Solidity, React, and Web3.js that allows users to create and fund projects transparently.",
       tags: ["blockchain", "web"],
-      banner: "/crowdfunding.svg", // Or .png/.jpg as needed
+      banner: "/crowdfunding.png",
       github: "https://github.com/L-Praveen36/Decentralized-Crowdfunding",
       live: null,
-      tech: ["Solidity", "React", "Web3.js", "Ethereum"],
+      tech: ["Solidity", "React", "Web3.js", "Ethereum", "Truuffle"],
     },
     {
       title: "Lost and Found Management System",
@@ -30,7 +30,7 @@ export default function Projects({ darkMode }) {
       description:
         "An application that uses machine learning to solve complex mathematical problems and provide step-by-step explanations.",
       tags: ["web"],
-      banner: "/math.svg",
+      banner: "/math.png",
       github: "#",
       live: null,
       tech: ["Python", "Flask", "scikit-learn", "React"],
@@ -98,53 +98,55 @@ export default function Projects({ darkMode }) {
           </div>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        {/* Projects Grid: only 2 per row, clean spacious content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              initial={{ opacity: 0, y: 40, scale: 0.96 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.7, delay: index * 0.13 }}
               viewport={{ once: true }}
-              className={`glass rounded-3xl py-0 px-7 shadow-lg hover:shadow-2xl glow-hover flex flex-col items-center gap-3 h-[430px] transition-all ${
+              className={`glass rounded-3xl shadow-lg hover:shadow-2xl glow-hover flex flex-col transition-all h-full overflow-hidden ${
                 darkMode ? "" : "glass-light"
               }`}
             >
               {/* Project Banner */}
               <div
-                className="w-full h-36 rounded-t-3xl flex items-center justify-center bg-center bg-cover bg-no-repeat border-b"
+                className="w-full h-44 md:h-52 rounded-t-3xl bg-center bg-cover bg-no-repeat border-b"
                 style={{
                   backgroundImage: `url('${project.banner}')`,
                   borderBottom: darkMode
                     ? "1px solid #23253a"
                     : "1px solid #ecebfc",
                 }}
-              >
-                {/* Optional: fallback text if image fails */}
-              </div>
-              <div className="flex flex-col flex-1 w-full items-center mt-4">
-                <h3 className="text-xl font-bold mb-1 text-center">{project.title}</h3>
-                <p className={`mb-1 text-center ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
-                  {project.description}
-                </p>
+              />
+
+              {/* Project Info */}
+              <div className="flex flex-col flex-1 px-8 py-8 gap-5">
+                <div>
+                  <h3 className="text-2xl font-bold mb-2 text-center">{project.title}</h3>
+                  <p className={`mb-3 text-center text-base ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+                    {project.description}
+                  </p>
+                </div>
                 {/* Tech Stack */}
-                <div className="flex flex-wrap justify-center gap-2 mb-2 mt-2">
+                <div className="flex flex-wrap justify-center gap-2 mb-1">
                   {project.tech.map((stack, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-800 dark:text-indigo-200 text-xs font-semibold"
+                      className="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-800 dark:text-indigo-200 text-xs font-semibold whitespace-nowrap"
                     >
                       {stack}
                     </span>
                   ))}
                 </div>
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-2">
+                <div className="flex flex-wrap justify-center gap-2 mb-1">
                   {project.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
                         darkMode
                           ? "bg-gray-800 text-indigo-300"
                           : "bg-gray-100 text-indigo-600"
@@ -154,8 +156,8 @@ export default function Projects({ darkMode }) {
                     </span>
                   ))}
                 </div>
-                {/* Buttons */}
-                <div className="flex gap-4 mt-auto">
+                {/* Actions */}
+                <div className="flex gap-4 mt-3 justify-center">
                   <motion.a
                     href={project.github}
                     target="_blank"

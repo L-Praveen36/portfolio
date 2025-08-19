@@ -20,8 +20,8 @@ export default function Contact({ darkMode }) {
         </svg>
       ),
       title: "Email",
-      value: "praveen@example.com",
-      link: "mailto:praveen@example.com",
+      value: "lunavathpraveen36@gmail.com",
+      link: "mailto:lunavathpraveen36@gmail.com",
     },
     {
       icon: (
@@ -41,8 +41,8 @@ export default function Contact({ darkMode }) {
         </svg>
       ),
       title: "Phone",
-      value: "+91 9876543210",
-      link: "tel:+919876543210",
+      value: "+91 9440388888",
+      link: "tel:+919440388888",
     },
     {
       icon: (
@@ -76,7 +76,7 @@ export default function Contact({ darkMode }) {
   const socialLinks = [
     {
       name: "GitHub",
-      link: "https://github.com",
+      link: "https://github.com/L-Praveen36",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@ export default function Contact({ darkMode }) {
     },
     {
       name: "LinkedIn",
-      link: "https://linkedin.com",
+      link: "https://www.linkedin.com/in/praveen-kumar-lunavath-a28a75371/",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
