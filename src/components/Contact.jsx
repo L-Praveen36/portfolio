@@ -125,18 +125,9 @@ export default function Contact({ darkMode }) {
   return (
     <section
       id="contact"
-      className="snap-section min-h-screen relative py-20"
+      className="snap-section min-h-screen relative py-20 flex items-center justify-center"
     >
-      {/* Animated background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-20">
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-purple-500 mix-blend-overlay filter blur-3xl floating"></div>
-          <div className="absolute top-1/2 right-1/3 w-24 h-24 rounded-full bg-indigo-500 mix-blend-overlay filter blur-3xl floating-delay-1"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-28 h-28 rounded-full bg-blue-500 mix-blend-overlay filter blur-3xl floating-delay-2"></div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 w-full md:w-3/5">
         {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -145,9 +136,7 @@ export default function Contact({ darkMode }) {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <h2 className="text-4xl font-bold mb-4 gradient-text">
-            Get In Touch
-          </h2>
+          <h2 className="text-4xl font-bold mb-4 gradient-text">Get In Touch</h2>
           <div
             className={`w-24 h-1 mx-auto ${
               darkMode ? "bg-indigo-500" : "bg-indigo-400"
@@ -155,169 +144,67 @@ export default function Contact({ darkMode }) {
           ></div>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row gap-12">
-          {/* Left Side - Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="flex-1"
-          >
-            <div
-              className={`glass rounded-3xl p-8 hover-tilt glow-hover ${
-                darkMode ? "" : "glass-light"
+        {/* Contact Info */}
+        <div className="space-y-6">
+          {contactDetails.map((item, index) => (
+            <motion.a
+              key={index}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-start gap-4 p-4 rounded-xl transition-colors ${
+                darkMode ? "bg-gray-800 hover:bg-gray-700" : "bg-gray-100 hover:bg-gray-200"
               }`}
+              whileHover={{ scale: 1.05, boxShadow: darkMode ? "0 8px 24px rgba(99,102,241,0.6)" : "0 8px 24px rgba(99,102,241,0.3)" }}
             >
-              <h3 className="text-2xl font-bold mb-6">Send me a message</h3>
-              <form className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className={`w-full px-4 py-3 rounded-lg ${
-                    darkMode
-                      ? "bg-gray-800 border-gray-700"
-                      : "bg-gray-100 border-gray-200"
-                  } border input-glow focus:outline-none`}
-                />
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className={`w-full px-4 py-3 rounded-lg ${
-                    darkMode
-                      ? "bg-gray-800 border-gray-700"
-                      : "bg-gray-100 border-gray-200"
-                  } border input-glow focus:outline-none`}
-                />
-                <textarea
-                  rows="5"
-                  placeholder="Your Message..."
-                  className={`w-full px-4 py-3 rounded-lg ${
-                    darkMode
-                      ? "bg-gray-800 border-gray-700"
-                      : "bg-gray-100 border-gray-200"
-                  } border input-glow focus:outline-none`}
-                ></textarea>
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  className={`w-full px-6 py-3 rounded-lg font-medium ${
-                    darkMode
-                      ? "bg-indigo-600 hover:bg-indigo-700"
-                      : "bg-indigo-500 hover:bg-indigo-600"
-                  } text-white transition-colors`}
-                >
-                  Send Message
-                </motion.button>
-              </form>
-            </div>
-          </motion.div>
-
-          {/* Right Side - Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="flex-1"
-          >
-            <div
-              className={`glass rounded-3xl p-8 hover-tilt glow-hover ${
-                darkMode ? "" : "glass-light"
-              } h-full`}
-            >
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-              <p
-                className={`mb-8 ${
-                  darkMode ? "text-gray-300" : "text-gray-600"
+              <div
+                className={`p-2 rounded-full ${
+                  darkMode ? "bg-indigo-900 text-indigo-300" : "bg-indigo-100 text-indigo-600"
                 }`}
               >
-                Feel free to reach out to me for collaborations, job
-                opportunities, or just to say hello!
-              </p>
-
-              {/* Contact Items */}
-              <div className="space-y-6">
-                {contactDetails.map((item, index) => (
-                  <motion.a
-                    key={index}
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ x: 5 }}
-                    className={`flex items-start gap-4 p-4 rounded-xl ${
-                      darkMode
-                        ? "bg-gray-800 hover:bg-gray-700"
-                        : "bg-gray-100 hover:bg-gray-200"
-                    } transition-colors`}
-                  >
-                    <div
-                      className={`p-2 rounded-full ${
-                        darkMode
-                          ? "bg-indigo-900 text-indigo-300"
-                          : "bg-indigo-100 text-indigo-600"
-                      }`}
-                    >
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-bold">{item.title}</h4>
-                      <p
-                        className={`${
-                          darkMode ? "text-gray-300" : "text-gray-600"
-                        }`}
-                      >
-                        {item.value}
-                      </p>
-                    </div>
-                  </motion.a>
-                ))}
+                {item.icon}
               </div>
-
-              {/* Social Links */}
-              <div className="mt-12">
-                <h4 className="font-bold mb-4">Connect with me</h4>
-                <div className="flex gap-4">
-                  {socialLinks.map((social, index) => (
-                    <motion.a
-                      key={index}
-                      href={social.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -5, scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`p-3 rounded-full ${
-                        darkMode
-                          ? "bg-gray-800 hover:bg-gray-700"
-                          : "bg-gray-100 hover:bg-gray-200"
-                      } glow-hover`}
-                    >
-                      {social.icon}
-                    </motion.a>
-                  ))}
-                </div>
+              <div>
+                <h4 className="font-bold">{item.title}</h4>
+                <p className={`${darkMode ? "text-gray-300" : "text-gray-600"}`}>{item.value}</p>
               </div>
-            </div>
-          </motion.div>
+            </motion.a>
+          ))}
         </div>
-      </div>
 
-      {/* Footer */}
-      <motion.footer
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className={`mt-20 py-6 text-center ${
-          darkMode ? "text-gray-400" : "text-gray-500"
-        }`}
-      >
-        <p>
-          © {new Date().getFullYear()} Lunavath Praveen Kumar. All rights
-          reserved.
-        </p>
-      </motion.footer>
+        {/* Social Links */}
+        <div className="mt-12">
+          <h4 className="font-bold mb-4 text-center">Connect with me</h4>
+          <div className="flex justify-center gap-6">
+            {socialLinks.map((social, index) => (
+              <motion.a
+                key={index}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-3 rounded-full transition-colors ${
+                  darkMode ? "bg-gray-800 hover:bg-gray-700" : "bg-gray-100 hover:bg-gray-200"
+                }`}
+                whileHover={{ scale: 1.15, boxShadow: darkMode ? "0 8px 20px rgba(99,102,241,0.75)" : "0 8px 20px rgba(99,102,241,0.35)" }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {social.icon}
+              </motion.a>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <motion.footer
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className={`mt-20 py-6 text-center ${darkMode ? "text-gray-400" : "text-gray-500"}`}
+        >
+          <p>© {new Date().getFullYear()} Lunavath Praveen Kumar. All rights reserved.</p>
+        </motion.footer>
+      </div>
     </section>
   );
 }
