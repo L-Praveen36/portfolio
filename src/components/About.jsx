@@ -58,7 +58,7 @@ function AboutSection({ darkMode }) {
             </a>
           </div>
           <div className="md:w-[30%] w-full flex justify-center">
-            <div className="w-60 h-80 rounded-40px overflow-hidden bg-gradient-to-b from-gray-100 to-gray-200 shadow-2xl">
+            <div className="w-60 h-80 rounded-3xl overflow-hidden bg-gradient-to-b from-gray-100 to-gray-200 shadow-2xl">
               <img
                 src="/Passport_Photo.jpeg"
                 alt="Profile"
