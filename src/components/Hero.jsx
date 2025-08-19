@@ -58,7 +58,9 @@ function Hero({ darkMode }) {
 
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
             <motion.a
-              href="#"
+              href="/Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ y: -5, scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={`px-8 py-3 rounded-full font-medium ${
