@@ -6,7 +6,7 @@ const skillGroups = [
     title: "Languages",
     skills: [
       { name: "C++", icon: "/c++.png" },
-      { name: "Python", icon: "/python.jpeg" },
+      { name: "Python", icon: "/python.png" },
     ],
   },
   {
@@ -17,16 +17,16 @@ const skillGroups = [
 
       { name: "Javascript", icon: "/JavaScript.png" },
     
-      { name: "React Js", icon: "/react.jpeg" },
+      { name: "React Js", icon: "/react.png" },
       { name: "Node Js", icon: "/node.js.png" },
-      { name: "Express Js", icon: "/ExpressJS.webp" },
+      { name: "Express Js", icon: "/express.png" },
       { name: "Mongo Db", icon: "/mongodb.png" },
     ],
   },
   {
     title: "Tools",
     skills: [
-      { name: "Git", icon: "/git.jpeg" },
+      { name: "Git", icon: "/git.png" },
       { name: "GitHub", icon: "/github.png" },
       { name: "Netlify", icon: "/Netlify.png" },
       { name: "Render", icon: "/Render.jpg" },

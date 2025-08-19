@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export default function Education({ darkMode }) {
   const education = [
     {
-      year: "2021 - Present",
+      year: "2023 - Present",
       degree: "B.Tech Mathematics & Computing",
       institution: "Indian Institute of Technology, Indore",
       description:
@@ -11,7 +11,7 @@ export default function Education({ darkMode }) {
       logo: "/IITI.png" // use your real path/logo
     },
     {
-      year: "2019 - 2021",
+      year: "2021 - 2023",
       degree: "Higher Secondary Education",
       institution: "Vertex Junior College, Hyderabad",
       description:
@@ -19,7 +19,7 @@ export default function Education({ darkMode }) {
       logo: "/vertex.png"
     },
     {
-      year: "2018 - 2019",
+      year: "2016 - 2021",
       degree: "Secondary Education",
       institution: "Jawahar Navodaya Vidyalaya, Medak",
       description: "Completed 10th grade with 84.8% percentage.",
