@@ -25,26 +25,26 @@ export default function Projects({ darkMode }) {
       live: "https://lostfoundapi.netlify.app/",
       tech: ["React", "Node.js", "MongoDB", "JWT", "Cloudinary", "Netlify", "Render"],
     },
-    {
-      title: "AI-Powered Math Solver",
-      description:
-        "An application that uses machine learning to solve complex mathematical problems and provide step-by-step explanations.",
-      tags: ["web"],
-      banner: "/math.png",
-      github: "#",
-      live: null,
-      tech: ["Python", "Flask", "scikit-learn", "React"],
-    },
-    {
-      title: "NFT Marketplace",
-      description:
-        "A decentralized marketplace for buying and selling NFTs with integrated wallet connectivity and bidding system.",
-      tags: ["blockchain"],
-      banner: "/projects/nftmarket.svg",
-      github: "#",
-      live: null,
-      tech: ["Solidity", "React", "Web3.js", "IPFS", "MetaMask"],
-    },
+    // {
+    //   title: "AI-Powered Math Solver",
+    //   description:
+    //     "An application that uses machine learning to solve complex mathematical problems and provide step-by-step explanations.",
+    //   tags: ["web"],
+    //   banner: "/math.png",
+    //   github: "#",
+    //   live: null,
+    //   tech: ["Python", "Flask", "scikit-learn", "React"],
+    // },
+    // {
+    //   title: "NFT Marketplace",
+    //   description:
+    //     "A decentralized marketplace for buying and selling NFTs with integrated wallet connectivity and bidding system.",
+    //   tags: ["blockchain"],
+    //   banner: "/projects/nftmarket.svg",
+    //   github: "#",
+    //   live: null,
+    //   tech: ["Solidity", "React", "Web3.js", "IPFS", "MetaMask"],
+    // },
   ];
 
   const filteredProjects =

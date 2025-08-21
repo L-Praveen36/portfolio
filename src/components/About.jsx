@@ -3,9 +3,9 @@ import { motion, LayoutGroup } from "framer-motion";
 import Lottie from "lottie-react";
 
 import fullstackAnim from "../assets/fullstack.json";
-import techAnim from "../assets/UIUX Designer.json";
-import problemAnim from "../assets/UIUX Designer.json";
-import visionaryAnim from "../assets/blockchain.json";
+import techAnim from "../assets/tech.json";
+import problemAnim from "../assets/problem.json";
+import visionaryAnim from "../assets/visionary.png";
 
 const skills = [
   {
@@ -15,7 +15,7 @@ const skills = [
   },
   {
     title: "Tech Enthusiast",
-    desc: "Love new technologies and like to explore the field AI and Image Processing.",
+    desc: "Love new technologies and like to explore the field AI and ML.",
     anim: techAnim,
   },
   {
@@ -25,7 +25,7 @@ const skills = [
   },
   {
     title: "Visionary",
-    desc: "A visionary with good leadership qualities. Aiming to reach new heights.",
+    desc: "A visionary with good creative qualities. Aiming to reach new heights.",
     anim: visionaryAnim,
   },
 ];

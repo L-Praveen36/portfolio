@@ -33,7 +33,7 @@ export default function Achievements({ darkMode }) {
   ];
 
   return (
-    <section id="achievements" className="snap-section min-h-screen relative py-20">
+    <section id="achievements" className="snap-section relative py-10">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <motion.div
