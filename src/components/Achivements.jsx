@@ -4,9 +4,9 @@ export default function Achievements({ darkMode }) {
   const achievements = [
     {
       title: "JEE Advanced Rank",
-      value: 1500,
+      value: 350,
       suffix: "",
-      description: "All India Rank in JEE Advanced 2021",
+      description: "All India Rank (ST Category) in JEE Advanced 2023",
       icon: "🏆",
     },
     {
@@ -18,18 +18,18 @@ export default function Achievements({ darkMode }) {
     },
     {
       title: "Open Source Contributions",
-      value: 8,
+      value: 5,
       suffix: "+",
       description: "Contributions to various open source projects",
       icon: "👨‍💻",
     },
-    {
-      title: "Hackathons Participated",
-      value: 3,
-      suffix: "+",
-      description: "National level hackathons",
-      icon: "🏅",
-    },
+    // {
+    //   title: "Hackathons Participated",
+    //   value: 3,
+    //   suffix: "+",
+    //   description: "National level hackathons",
+    //   icon: "🏅",
+    // },
   ];
 
   return (
