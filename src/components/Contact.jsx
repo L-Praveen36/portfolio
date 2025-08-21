@@ -41,8 +41,8 @@ export default function Contact({ darkMode }) {
         </svg>
       ),
       title: "Phone",
-      value: "+91 9440388888",
-      link: "tel:+919440388888",
+      value: "+91 9440388878",
+      link: "tel:+919440388878",
     },
     {
       icon: (
