@@ -5,7 +5,7 @@ import Lottie from "lottie-react";
 import fullstackAnim from "../assets/fullstack.json";
 import techAnim from "../assets/tech.json";
 import problemAnim from "../assets/problem.json";
-import visionaryAnim from "../assets/visionary.png";
+import visionaryAnim from "../assets/vision.json";
 
 const skills = [
   {
