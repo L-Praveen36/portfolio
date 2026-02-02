@@ -1,89 +1,78 @@
-// HeroSection.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import Lottie from "lottie-react";
-import heroAnimation from "../assets/hero-animation.json"; // <-- your Lottie JSON
+import profile from "../assets/profile.png";
 
 function Hero({ darkMode }) {
   return (
     <section
       id="home"
-      className="snap-section min-h-screen relative overflow-hidden flex items-center"
+      className="relative min-h-screen overflow-hidden flex items-center"
     >
-      {/* Background blur blobs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-20">
-          <div className="absolute top-20 left-20 w-40 h-40 rounded-full bg-purple-500 mix-blend-overlay filter blur-3xl floating"></div>
-          <div className="absolute top-1/2 right-1/4 w-32 h-32 rounded-full bg-indigo-500 mix-blend-overlay filter blur-3xl floating-delay-1"></div>
-          <div className="absolute bottom-20 right-20 w-48 h-48 rounded-full bg-blue-500 mix-blend-overlay filter blur-3xl floating-delay-2"></div>
-        </div>
+      {/* Background split */}
+      <div className="absolute inset-0 flex">
+        {/* Left light panel */}
+        <div className="w-1/2 bg-gray-100"></div>
+
+        {/* Right dark panel */}
+        <div className="w-1/2 bg-black"></div>
       </div>
 
-      {/* Main Content - Two columns */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 py-20">
-        
-        {/* Left: Animation */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="w-full md:w-1/2 flex justify-center mb-10 md:mb-0"
-        >
-          <Lottie
-            animationData={heroAnimation}
-            loop={true}
-            className="w-80 md:w-[400px] lg:w-[500px]"
-          />
-        </motion.div>
+      {/* Diagonal overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          clipPath: "polygon(45% 0, 100% 0, 100% 100%, 55% 100%)",
+          backgroundColor: "#000",
+        }}
+      />
 
-        {/* Right: Text + Buttons */}
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 items-center">
+        
+        {/* LEFT: Text */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full md:w-1/2 text-center md:text-left"
+          className="text-left"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Hi, I'm{" "}
-            <span className="gradient-text">Lunavath Praveen Kumar</span>
+          <p className="text-lg text-gray-600 mb-2">Hi, I am</p>
+
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
+            Lunavath <br /> Praveen Kumar
           </h1>
-          <p
-            className={`text-lg md:text-2xl max-w-2xl mb-8 ${
-              darkMode ? "text-gray-300" : "text-gray-600"
-            }`}
-          >
-            B.Tech Mathematics & Computing @ IIT Indore | Full-Stack &
-            AI Enthusiast
+
+          <p className="text-gray-600 text-lg md:text-xl mb-8">
+            B.Tech Mathematics & Computing <br />
+            Full-Stack & AI Enthusiast
           </p>
 
-          <div className="flex flex-wrap justify-center md:justify-start gap-4">
-            <motion.a
-              href="/Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ y: -5, scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`px-8 py-3 rounded-full font-medium ${
-                darkMode
-                  ? "bg-indigo-600 hover:bg-indigo-700"
-                  : "bg-indigo-500 hover:bg-indigo-600"
-              } text-white glow-hover`}
-            >
-              My Resume
-            </motion.a>
-            <motion.a
-              href="#projects"
-              whileHover={{ y: -5, scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`px-8 py-3 rounded-full font-medium ${
-                darkMode
-                  ? "glass hover:bg-gray-800"
-                  : "glass-light hover:bg-gray-100"
-              } glow-hover`}
-            >
-              View Projects
-            </motion.a>
+          {/* Social icons (optional) */}
+          <div className="flex gap-4">
+            <a href="#" className="p-3 bg-gray-200 rounded-md hover:bg-gray-300">
+              GitHub
+            </a>
+            <a href="#" className="p-3 bg-gray-200 rounded-md hover:bg-gray-300">
+              LinkedIn
+            </a>
+            <a href="#" className="p-3 bg-gray-200 rounded-md hover:bg-gray-300">
+              Email
+            </a>
           </div>
+        </motion.div>
+
+        {/* RIGHT: Image */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="flex justify-center md:justify-end mt-10 md:mt-0"
+        >
+          <img
+            src={profile}
+            alt="Praveen"
+            className="w-[280px] md:w-[360px] lg:w-[420px] object-contain"
+          />
         </motion.div>
       </div>
     </section>
