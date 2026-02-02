@@ -1,64 +1,42 @@
 import React from "react";
 import { motion } from "framer-motion";
-import profile from "../assets/profile.png";
+import profile from "../assets/profile.png"; // replace with new image
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen overflow-hidden flex items-center">
-      
-      {/* Background */}
-      <div className="absolute inset-0 flex">
-        {/* Left */}
-        <div className="w-1/2 bg-gradient-to-b from-gray-100 via-white to-gray-50"></div>
+    <section className="min-h-screen flex items-center bg-slate-900 overflow-hidden">
+      <div className="max-w-7xl mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
 
-        {/* Right */}
-        <div className="w-1/2 bg-gradient-to-br from-[#050505] via-[#0b0b14] to-black"></div>
-      </div>
-
-      {/* Diagonal overlay */}
-      <div
-        className="absolute inset-0"
-        style={{
-          clipPath: "polygon(50% 0, 100% 0, 100% 100%, 60% 100%)",
-          background:
-            "linear-gradient(135deg, rgba(0,0,0,0.85), rgba(10,10,20,0.95))",
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 items-center">
-        
         {/* LEFT CONTENT */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-6"
+          className="space-y-6 z-10"
         >
-          <p className="text-gray-600 text-lg">Hi, I am</p>
+          <p className="text-slate-300 text-lg">Hi, I am</p>
 
-          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-gray-900">
+          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-white">
             Lunavath <br />
-            <span className="text-indigo-600">Praveen Kumar</span>
+            <span className="text-indigo-400">Praveen Kumar</span>
           </h1>
 
-          <p className="text-gray-700 text-lg md:text-xl max-w-md">
+          <p className="text-slate-300 text-lg md:text-xl max-w-md">
             B.Tech Mathematics & Computing <br />
             Full-Stack & AI Enthusiast
           </p>
 
-          {/* Buttons */}
           <div className="flex gap-4 pt-4">
             <a
               href="#projects"
-              className="px-6 py-3 rounded-full bg-indigo-600 text-white font-medium shadow-lg hover:bg-indigo-700 transition"
+              className="px-7 py-3 rounded-full bg-indigo-500 text-white font-medium shadow-lg hover:bg-indigo-600 transition"
             >
               View Projects
             </a>
 
             <a
               href="#contact"
-              className="px-6 py-3 rounded-full border border-indigo-600 text-indigo-600 font-medium hover:bg-indigo-50 transition"
+              className="px-7 py-3 rounded-full border border-indigo-400 text-indigo-300 font-medium hover:bg-indigo-500/10 transition"
             >
               Contact Me
             </a>
@@ -66,28 +44,39 @@ const Hero = () => {
         </motion.div>
 
         {/* RIGHT IMAGE */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9 }}
-          className="relative flex justify-center md:justify-end h-[500px] md:h-[650px]"
-        >
-          {/* Glow */}
-          <div className="absolute inset-0 bg-indigo-500/10 blur-[120px] rounded-full"></div>
+<motion.div
+  initial={{ opacity: 0, scale: 0.95 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.9 }}
+  className="relative hidden md:block"
+>
+  {/* Glow */}
+  <div className="absolute -right-32 top-1/2 -translate-y-1/2 
+                  w-[620px] h-[620px] 
+                  bg-indigo-500/35 
+                  blur-[180px] rounded-full" />
 
-          {/* Image */}
-          <img
-            src={profile}
-            alt="Praveen"
-            className="
-              relative
-              h-full
-              object-contain
-              translate-x-6
-              drop-shadow-[0_40px_80px_rgba(0,0,0,0.7)]
-            "
-          />
-        </motion.div>
+  {/* Image */}
+  <img
+    src={profile}
+    alt="Praveen Kumar"
+    className="
+      absolute
+      -right-24
+      top-1/2
+      -translate-y-1/2
+      w-[460px]
+      lg:w-[520px]
+      xl:w-[560px]
+      object-contain
+      grayscale
+      contrast-110
+      drop-shadow-[0_30px_60px_rgba(0,0,0,0.9)]
+      [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]
+    "
+  />
+</motion.div>
+
       </div>
     </section>
   );
