@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import profile from "../assets/profile.png";
+import profile from "/Passport_photo.jpeg";
 
 function Hero({ darkMode }) {
   return (
