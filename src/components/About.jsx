@@ -2,6 +2,7 @@ import React from "react";
 import { motion, LayoutGroup } from "framer-motion";
 import Lottie from "lottie-react";
 
+import heroAnimation from "../assets/hero-animation.json"; // <-- reuse hero lottie
 import fullstackAnim from "../assets/fullstack.json";
 import techAnim from "../assets/tech.json";
 import problemAnim from "../assets/problem.json";
@@ -33,7 +34,8 @@ const skills = [
 function AboutSection({ darkMode }) {
   return (
     <section id="about" className="relative min-h-screen py-20 overflow-visible">
-      {/* Decorative Blobs (optional) */}
+      
+      {/* Decorative blobs */}
       <div className="absolute inset-0 pointer-events-none select-none">
         <div className="absolute top-24 left-24 w-40 h-40 rounded-full bg-purple-500 mix-blend-overlay filter blur-3xl"></div>
         <div className="absolute top-1/2 right-1/4 w-32 h-32 rounded-full bg-indigo-500 mix-blend-overlay filter blur-3xl"></div>
@@ -41,13 +43,27 @@ function AboutSection({ darkMode }) {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col gap-16">
+        
         {/* Top Section */}
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <div className="md:w-[70%] w-full">
+        <div className="flex flex-col md:flex-row items-center gap-10">
+          
+          {/* LEFT: Text */}
+          <div className="md:w-[65%] w-full">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">About Me</h2>
-            <p className={`text-[1.15rem] leading-relaxed mb-6 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
-              Hi there, I’m <span className="font-semibold text-blue-600">Praveen</span> — skilled in <span className="font-bold text-blue-600">Full stack web development</span> and quick to adapt to new environments. Strongly collaborative and interested in a <span className="font-bold text-blue-600">Software Developer</span> role to enhance product experiences. Well-acquainted with HR methodologies.
+
+            <p
+              className={`text-[1.15rem] leading-relaxed mb-6 ${
+                darkMode ? "text-gray-300" : "text-gray-700"
+              }`}
+            >
+              Hi there, I’m{" "}
+              <span className="font-semibold text-blue-600">Praveen</span> — skilled
+              in <span className="font-bold text-blue-600">Full stack web development</span>{" "}
+              and quick to adapt to new environments. Strongly collaborative and
+              interested in a <span className="font-bold text-blue-600">Software Developer</span>{" "}
+              role to enhance product experiences.
             </p>
+
             <a
               href="/Resume.pdf"
               target="_blank"
@@ -57,18 +73,24 @@ function AboutSection({ darkMode }) {
               My Resume
             </a>
           </div>
-          <div className="md:w-[30%] w-full flex justify-center">
-            <div className="w-60 h-80 rounded-3xl overflow-hidden bg-gradient-to-b from-gray-100 to-gray-200 shadow-2xl">
-              <img
-                src="/Passport_Photo.jpeg"
-                alt="Profile"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
+
+          {/* RIGHT: Lottie animation */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="md:w-[35%] w-full flex justify-center"
+          >
+            <Lottie
+              animationData={heroAnimation}
+              loop
+              className="w-72 md:w-80 lg:w-96"
+            />
+          </motion.div>
         </div>
 
-        {/* Skill Cards (no modal/expand) */}
+        {/* Skill Cards */}
         <LayoutGroup>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
             {skills.map((skill, idx) => (
@@ -76,12 +98,24 @@ function AboutSection({ darkMode }) {
                 key={idx}
                 whileHover={{ scale: 1.05, y: -4 }}
                 transition={{ type: "spring", stiffness: 320, damping: 22 }}
-                className={`cursor-pointer rounded-2xl p-6 ${darkMode ? "glass" : "glass-light"} shadow-md flex flex-col items-center relative overflow-visible`}
+                className={`rounded-2xl p-6 ${
+                  darkMode ? "glass" : "glass-light"
+                } shadow-md flex flex-col items-center`}
                 style={{ minHeight: "220px" }}
               >
-                <Lottie animationData={skill.anim} loop={false} className="w-20 h-20 mb-2" />
-                <h4 className="text-lg font-bold mb-2 text-center">{skill.title}</h4>
-                <p className={`text-center ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
+                <Lottie
+                  animationData={skill.anim}
+                  loop={false}
+                  className="w-20 h-20 mb-2"
+                />
+                <h4 className="text-lg font-bold mb-2 text-center">
+                  {skill.title}
+                </h4>
+                <p
+                  className={`text-center ${
+                    darkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
                   {skill.desc}
                 </p>
               </motion.div>
