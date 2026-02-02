@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import profile from "/Passport_Photo.jpeg";
 
 function Hero({ darkMode }) {
   return (
@@ -63,17 +62,28 @@ function Hero({ darkMode }) {
 
         {/* RIGHT: Image */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex justify-center md:justify-end mt-10 md:mt-0"
-        >
-          <img
-            src={profile}
-            alt="Praveen"
-            className="w-[280px] md:w-[360px] lg:w-[420px] object-contain"
-          />
-        </motion.div>
+  initial={{ opacity: 0, x: 40 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.9 }}
+  className="relative flex justify-center md:justify-end"
+>
+  {/* Glow behind image */}
+  <div className="absolute -inset-6 bg-indigo-500/20 blur-3xl rounded-full"></div>
+
+  <img
+    src="/profile.png"
+    alt="Praveen"
+    className="
+      relative
+      w-[260px]
+      md:w-[340px]
+      lg:w-[420px]
+      object-contain
+      drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]
+    "
+  />
+</motion.div>
+
       </div>
     </section>
   );
