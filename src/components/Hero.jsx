@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import profile from "../assets/profile.png"; // replace with new image
+import profile from "../assets/profile.webp"; // replace with new image
 
 const Hero = () => {
   return (

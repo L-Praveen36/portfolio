@@ -6,7 +6,7 @@ const skillGroups = [
     title: "Languages",
     skills: [
       { name: "C++", icon: "/c++.png" },
-      { name: "Python", icon: "/python.png" },
+     
     ],
   },
   {
