@@ -4,7 +4,7 @@ import profile from "../assets/profile.webp"; // replace with new image
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center bg-slate-900 overflow-hidden">
+    <section id="Home" className="min-h-screen flex items-center bg-slate-900 overflow-hidden">
       <div className="max-w-7xl mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
 
         {/* LEFT CONTENT */}
