@@ -53,8 +53,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9 }}
-          className="relative block"
-
+          className="relative hidden md:block"
         >
           {/* 🌊 Cyan Radial Glow */}
           <div className="absolute -right-32 top-1/2 -translate-y-1/2 
