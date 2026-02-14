@@ -52,68 +52,49 @@ export default function Achievements({ darkMode }) {
         </motion.div>
 
         {/* Achievements Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {achievements.map((achievement, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-              className={`glass rounded-2xl p-6 hover-tilt glow-hover ${
-                darkMode ? "" : "glass-light"
-              } text-center`}
-            >
-              {/* Icon */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                viewport={{ once: true }}
-                className="text-5xl mb-4"
-              >
-                {achievement.icon}
-              </motion.div>
+        {/* Achievements Grid */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {achievements.map((achievement, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -6 }}
+      className="glass max-w-xs mx-auto 
+                 rounded-xl p-5 
+                 text-center transition-all duration-300
+                 hover:shadow-[0_0_25px_rgba(139,92,246,0.25)]"
+    >
+      {/* Icon */}
+      <div className="text-4xl mb-3">
+        {achievement.icon}
+      </div>
 
-              {/* Value */}
-              <motion.h3
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-                viewport={{ once: true }}
-                className="text-4xl font-bold mb-2 gradient-text"
-              >
-                {achievement.value}
-                <span className="text-indigo-400">{achievement.suffix}</span>
-              </motion.h3>
+      {/* Value */}
+      <h3 className="text-3xl font-bold mb-1 
+                     bg-gradient-to-r from-purple-400 to-cyan-400 
+                     bg-clip-text text-transparent">
+        {achievement.value}
+        <span className="text-purple-400">
+          {achievement.suffix}
+        </span>
+      </h3>
 
-              {/* Title */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 + 0.4 }}
-                viewport={{ once: true }}
-                className="text-xl font-medium mb-2"
-              >
-                {achievement.title}
-              </motion.p>
+      {/* Title */}
+      <p className="text-lg font-medium text-white mb-1">
+        {achievement.title}
+      </p>
 
-              {/* Description */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
-                viewport={{ once: true }}
-                className={`text-sm ${
-                  darkMode ? "text-gray-400" : "text-gray-500"
-                }`}
-              >
-                {achievement.description}
-              </motion.p>
-            </motion.div>
-          ))}
-        </div>
+      {/* Description */}
+      <p className="text-sm text-gray-400 leading-relaxed">
+        {achievement.description}
+      </p>
+    </motion.div>
+  ))}
+</div>
+
       </div>
     </section>
   );

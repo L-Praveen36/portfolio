@@ -124,87 +124,111 @@ export default function Contact({ darkMode }) {
 
   return (
     <section
-      id="contact"
-      className="snap-section min-h-screen relative py-20 flex items-center justify-center"
+  id="contact"
+  className="snap-section min-h-screen relative py-20 flex items-center justify-center bg-[#0f172a]"
+>
+  <div className="max-w-7xl mx-auto px-6 w-full md:w-3/5">
+
+    {/* Section Heading */}
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="mb-16 text-center"
     >
-      <div className="max-w-7xl mx-auto px-6 w-full md:w-3/5">
-        {/* Section Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-16 text-center"
+      <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+        Get In Touch
+      </h2>
+      <div className="w-24 h-1 mx-auto bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full"></div>
+    </motion.div>
+
+    {/* Contact Info */}
+    <div className="space-y-6">
+      {contactDetails.map((item, index) => (
+        <motion.a
+          key={index}
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-start gap-4 p-6 rounded-2xl 
+                     bg-white/5 backdrop-blur-md 
+                     border border-white/10
+                     hover:border-purple-500/40
+                     transition-all duration-300"
+          whileHover={{
+            scale: 1.04,
+            boxShadow: "0 0 30px rgba(139,92,246,0.4)"
+          }}
         >
-          <h2 className="text-4xl font-bold mb-4 gradient-text">Get In Touch</h2>
-          <div
-            className={`w-24 h-1 mx-auto ${
-              darkMode ? "bg-indigo-500" : "bg-indigo-400"
-            }`}
-          ></div>
-        </motion.div>
-
-        {/* Contact Info */}
-        <div className="space-y-6">
-          {contactDetails.map((item, index) => (
-            <motion.a
-              key={index}
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-start gap-4 p-4 rounded-xl transition-colors ${
-                darkMode ? "bg-gray-800 hover:bg-gray-700" : "bg-gray-100 hover:bg-gray-200"
-              }`}
-              whileHover={{ scale: 1.05, boxShadow: darkMode ? "0 8px 24px rgba(99,102,241,0.6)" : "0 8px 24px rgba(99,102,241,0.3)" }}
-            >
-              <div
-                className={`p-2 rounded-full ${
-                  darkMode ? "bg-indigo-900 text-indigo-300" : "bg-indigo-100 text-indigo-600"
-                }`}
-              >
-                {item.icon}
-              </div>
-              <div>
-                <h4 className="font-bold">{item.title}</h4>
-                <p className={`${darkMode ? "text-gray-300" : "text-gray-600"}`}>{item.value}</p>
-              </div>
-            </motion.a>
-          ))}
-        </div>
-
-        {/* Social Links */}
-        <div className="mt-12">
-          <h4 className="font-bold mb-4 text-center">Connect with me</h4>
-          <div className="flex justify-center gap-6">
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={index}
-                href={social.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`p-3 rounded-full transition-colors ${
-                  darkMode ? "bg-gray-800 hover:bg-gray-700" : "bg-gray-100 hover:bg-gray-200"
-                }`}
-                whileHover={{ scale: 1.15, boxShadow: darkMode ? "0 8px 20px rgba(99,102,241,0.75)" : "0 8px 20px rgba(99,102,241,0.35)" }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {social.icon}
-              </motion.a>
-            ))}
+          <div className="p-3 rounded-full bg-gradient-to-br from-purple-500/20 to-cyan-400/20 text-purple-400">
+            {item.icon}
           </div>
+
+          <div>
+            <h4 className="font-semibold text-white">{item.title}</h4>
+            <p className="text-gray-400">{item.value}</p>
+          </div>
+        </motion.a>
+      ))}
+    </div>
+
+    {/* Social Links */}
+<div className="mt-14">
+  <h4 className="font-semibold mb-8 text-center text-gray-300">
+    Connect with me
+  </h4>
+
+  <div className="flex justify-center gap-12 flex-wrap">
+    {socialLinks.map((social, index) => (
+      <motion.a
+        key={index}
+        href={social.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex flex-col items-center gap-3 
+                   p-6 rounded-2xl 
+                   bg-white/5 backdrop-blur-md 
+                   border border-white/10
+                   text-gray-300
+                   hover:text-white
+                   transition-all duration-300"
+        whileHover={{
+          scale: 1.08,
+          boxShadow: "0 0 30px rgba(139,92,246,0.5)"
+        }}
+        whileTap={{ scale: 0.95 }}
+      >
+        {/* Bigger Icon */}
+        <div className="text-4xl">
+          {social.icon}
         </div>
 
-        {/* Footer */}
-        <motion.footer
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className={`mt-20 py-6 text-center ${darkMode ? "text-gray-400" : "text-gray-500"}`}
-        >
-          <p>© {new Date().getFullYear()} Lunavath Praveen Kumar. All rights reserved.</p>
-        </motion.footer>
-      </div>
-    </section>
+        {/* Name Below */}
+        <span className="text-sm font-medium tracking-wide">
+          {social.name}
+        </span>
+      </motion.a>
+    ))}
+  </div>
+</div>
+
+
+    {/* Footer */}
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="mt-20 py-6 text-center text-gray-500"
+    >
+      <p>
+        © {new Date().getFullYear()} Lunavath Praveen Kumar. All rights reserved.
+      </p>
+    </motion.footer>
+
+  </div>
+</section>
+
   );
 }

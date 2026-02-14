@@ -47,52 +47,57 @@ export default function Education({ darkMode }) {
         </motion.div>
 
         {/* Grid of Tall Stylish Glass Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {education.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.7, delay: index * 0.13 }}
-              viewport={{ once: true }}
-              className={`glass rounded-3xl py-10 px-7 shadow-lg hover:shadow-2xl glow-hover flex flex-col items-center gap-3 h-[410px] sm:h-[420px] md:h-[430px] transition-all ${
-                darkMode ? "" : "glass-light"
-              }`}
-            >
-              {/* Logo */}
-              <div className="w-20 h-20 mb-2 rounded-xl bg-gray-100 dark:bg-gray-900 flex items-center justify-center shadow">
-                <img
-                  src={item.logo}
-                  alt={`${item.institution} logo`}
-                  className="w-14 h-14 object-contain"
-                  loading="lazy"
-                />
-              </div>
-              {/* Year */}
-              <p
-                className={`text-sm font-medium mb-1 ${
-                  darkMode ? "text-indigo-400" : "text-indigo-500"
-                }`}
-              >
-                {item.year}
-              </p>
-              {/* Degree */}
-              <h3 className="text-xl font-bold mb-2 text-center">{item.degree}</h3>
-              {/* Institution */}
-              <p
-                className={`font-medium mb-2 text-center ${
-                  darkMode ? "text-gray-300" : "text-gray-600"
-                }`}
-              >
-                {item.institution}
-              </p>
-              {/* Description */}
-              <p className={`text-center ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
-                {item.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        {/* Education Grid */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  {education.map((item, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 40, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -6 }}
+      className="glass max-w-sm mx-auto 
+                 rounded-2xl py-8 px-6 
+                 flex flex-col items-center 
+                 gap-3 transition-all duration-300
+                 hover:shadow-[0_0_30px_rgba(139,92,246,0.25)]"
+    >
+      {/* Logo */}
+      <div className="w-16 h-16 mb-2 rounded-lg 
+                      bg-white/5 backdrop-blur-md 
+                      flex items-center justify-center">
+        <img
+          src={item.logo}
+          alt={`${item.institution} logo`}
+          className="w-12 h-12 object-contain"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Year */}
+      <p className="text-sm font-medium text-purple-400">
+        {item.year}
+      </p>
+
+      {/* Degree */}
+      <h3 className="text-lg font-semibold text-center text-white">
+        {item.degree}
+      </h3>
+
+      {/* Institution */}
+      <p className="text-sm text-gray-400 text-center">
+        {item.institution}
+      </p>
+
+      {/* Description */}
+      <p className="text-sm text-gray-500 text-center leading-relaxed">
+        {item.description}
+      </p>
+    </motion.div>
+  ))}
+</div>
+
       </div>
     </section>
   );
