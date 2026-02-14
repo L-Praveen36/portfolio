@@ -14,7 +14,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 py-4 px-6"
+        className="fixed top-0 left-0 right-0 z-50 bg-black/80 md:bg-white/5 md:backdrop-blur-xl border-b border-white/10 py-4 px-6"
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           
