@@ -66,19 +66,48 @@ function Navbar({ darkMode, toggleDarkMode }) {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="fixed top-[72px] left-0 w-full bg-black/90 backdrop-blur-md flex flex-col items-center py-6 space-y-6 md:hidden z-40">
-          {navItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              onClick={() => setIsOpen(false)}
-              className="text-white text-lg hover:text-[#00F5D4] transition"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
-      )}
+  <div className="fixed inset-0 flex justify-end md:hidden z-40">
+    
+    {/* Overlay */}
+    <div
+      className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+      onClick={() => setIsOpen(false)}
+    />
+
+    {/* Glass Panel */}
+    <motion.div
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: 100, opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="
+        relative
+        w-64
+        h-full
+        bg-white/10
+        backdrop-blur-xl
+        border-l border-white/20
+        shadow-2xl
+        flex flex-col
+        items-center
+        justify-center
+        space-y-8
+      "
+    >
+      {navItems.map((item) => (
+        <a
+          key={item}
+          href={`#${item.toLowerCase()}`}
+          onClick={() => setIsOpen(false)}
+          className="text-white text-lg font-medium hover:text-[#00F5D4] transition"
+        >
+          {item}
+        </a>
+      ))}
+    </motion.div>
+  </div>
+)}
+
     </>
   );
 }

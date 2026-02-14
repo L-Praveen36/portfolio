@@ -69,25 +69,28 @@ const Hero = () => {
 
   {/* Image */}
   <img
-    src={profile}
-    alt="profile picture"
-    loading="eager"
-    className="
-      relative
-      w-64
-      md:absolute
-      md:-right-24
-      md:top-1/2
-      md:-translate-y-1/2
-      md:w-[460px]
-      lg:w-[520px]
-      xl:w-[560px]
-      object-contain
-      contrast-110
-      drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]
-      [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]
-    "
-  />
+  src={profile}
+  alt="profile picture"
+  loading="eager"
+  fetchpriority="high"
+  className="
+    relative
+    w-44
+    sm:w-52
+    md:absolute
+    md:-right-24
+    md:top-1/2
+    md:-translate-y-1/2
+    md:w-[420px]
+    lg:w-[480px]
+    xl:w-[520px]
+    object-contain
+    md:contrast-110
+    md:drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]
+    md:[mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]
+  "
+/>
+
 </motion.div>
 
 
