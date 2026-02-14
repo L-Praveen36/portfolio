@@ -53,7 +53,8 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9 }}
-          className="relative hidden md:block"
+          className="relative block"
+
         >
           {/* 🌊 Cyan Radial Glow */}
           <div className="absolute -right-32 top-1/2 -translate-y-1/2 
@@ -73,18 +74,18 @@ const Hero = () => {
             alt="profile picture"
             loading="eager"
             className="
-              absolute
-              -right-24
-              top-1/2
-              -translate-y-1/2
-              w-[460px]
-              lg:w-[520px]
-              xl:w-[560px]
-              object-contain
-              contrast-110
-              drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]
-              [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]
-            "
+  absolute md:-right-24 right-0
+  top-1/2
+  -translate-y-1/2
+  w-[280px] md:w-[460px]
+  lg:w-[520px]
+  xl:w-[560px]
+  object-contain
+  contrast-110
+  drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]
+  [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]
+"
+
           />
         </motion.div>
 
