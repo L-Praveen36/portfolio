@@ -10,7 +10,7 @@ export default function Projects() {
       description:
         "A blockchain-based crowdfunding platform built with Solidity, React, and Web3.js that allows users to create and fund projects transparently.",
       tags: ["blockchain", "web"],
-      banner: "/crowdfunding.png",
+      banner: "/crowdfunding.webp",
       github: "https://github.com/L-Praveen36/Decentralized-Crowdfunding",
       live: null,
       tech: ["Solidity", "React", "Web3.js", "Ethereum", "Truffle"],
@@ -20,7 +20,7 @@ export default function Projects() {
       description:
         "A full-stack web application for managing lost and found items with authentication, image uploads, and real-time notifications.",
       tags: ["web"],
-      banner: "/lostfound.png",
+      banner: "/lostfound.webp",
       github: "https://github.com/L-Praveen36/lostfound",
       live: "https://lostfoundapi.netlify.app/",
       tech: ["React", "Node.js", "MongoDB", "JWT", "Cloudinary"],

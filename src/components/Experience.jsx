@@ -8,7 +8,7 @@ export default function Education({ darkMode }) {
       institution: "Indian Institute of Technology, Indore",
       description:
         "Currently pursuing my undergraduate degree with a focus on algorithms, data structures, and computational mathematics.",
-      logo: "/IITI.png" // use your real path/logo
+      logo: "/IITI.webp" // use your real path/logo
     },
     {
       year: "2021 - 2023",
@@ -16,14 +16,14 @@ export default function Education({ darkMode }) {
       institution: "Vertex Junior College, Hyderabad",
       description:
         "Completed 11th and 12th grade with Mathematics, Physics, and Chemistry as main subjects.",
-      logo: "/vertex.png"
+      logo: "/vertex.webp"
     },
     {
       year: "2016 - 2021",
       degree: "Secondary Education",
       institution: "Jawahar Navodaya Vidyalaya, Medak",
       description: "Completed 10th grade with 84.8% percentage.",
-      logo: "/jnv.png"
+      logo: "/jnv.webp"
     },
   ];
 

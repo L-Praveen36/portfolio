@@ -5,28 +5,28 @@ const skillGroups = [
   {
     title: "Languages",
     skills: [
-      { name: "C++", icon: "/c++.png" },
+      { name: "C++", icon: "/c++.webp" },
     ],
   },
   {
     title: "Web Development",
     skills: [
-      { name: "HTML 5", icon: "/html.png" },
+      { name: "HTML 5", icon: "/html.webp" },
       { name: "CSS 3", icon: "/css.svg" },
-      { name: "JavaScript", icon: "/JavaScript.png" },
-      { name: "React Js", icon: "/react.png" },
-      { name: "Node Js", icon: "/node.js.png" },
-      { name: "Express Js", icon: "/express.png" },
-      { name: "Mongo Db", icon: "/mongodb.png" },
+      { name: "JavaScript", icon: "/JavaScript.webp" },
+      { name: "React Js", icon: "/react.webp" },
+      { name: "Node Js", icon: "/node.js.webp" },
+      { name: "Express Js", icon: "/express.webp" },
+      { name: "Mongo Db", icon: "/mongodb.webp" },
     ],
   },
   {
     title: "Tools",
     skills: [
-      { name: "Git", icon: "/git.png" },
-      { name: "GitHub", icon: "/github.png" },
-      { name: "Netlify", icon: "/Netlify.png" },
-      { name: "Render", icon: "/Render.jpg" },
+      { name: "Git", icon: "/git.webp" },
+      { name: "GitHub", icon: "/github.webp" },
+      { name: "Netlify", icon: "/Netlify.webp" },
+      { name: "Render", icon: "/Render.webp" },
     ],
   },
 ];
