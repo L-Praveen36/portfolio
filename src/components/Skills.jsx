@@ -3,10 +3,7 @@ import {
   Code2,
   PanelsTopLeft,
   Server,
-  Database,
   Cloud,
-  BrainCircuit,
-  ShieldCheck,
   Wrench,
   Cpu,
 } from "lucide-react";
@@ -28,24 +25,9 @@ const skillGroups = [
     skills: ["Node.js", "Express.js", "NestJS", "REST APIs", "API Integration"],
   },
   {
-    title: "Databases & Caching",
-    icon: Database,
-    skills: ["PostgreSQL", "MongoDB", "Redis", "Database Design", "CRUD Operations"],
-  },
-  {
     title: "Cloud & DevOps",
     icon: Cloud,
     skills: ["Docker", "Containerization", "Deployment Workflows", "Health Checks", "GitHub Webhooks", "CI/CD Concepts"],
-  },
-  {
-    title: "AI & Generative AI",
-    icon: BrainCircuit,
-    skills: ["Prompt Engineering", "AI-Assisted Development", "AI-Powered Features", "Model Integration Concepts"],
-  },
-  {
-    title: "Security & Authentication",
-    icon: ShieldCheck,
-    skills: ["Firebase Authentication", "GitHub OAuth", "AES-256-GCM", "Environment Variable Management"],
   },
   {
     title: "Tools & Platforms",
@@ -78,7 +60,7 @@ export default function SkillsSection() {
           </h2>
           <p className="mt-5 max-w-2xl mx-auto text-white/60 leading-relaxed">
             Technologies, tools, and computer science fundamentals I use to build
-            full-stack applications and explore AI-enabled software.
+            reliable full-stack applications.
           </p>
         </motion.div>
 
