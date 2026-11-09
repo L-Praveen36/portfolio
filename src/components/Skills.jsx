@@ -1,92 +1,120 @@
 import { motion } from "framer-motion";
+import {
+  Code2,
+  PanelsTopLeft,
+  Server,
+  Database,
+  Cloud,
+  BrainCircuit,
+  ShieldCheck,
+  Wrench,
+  Cpu,
+} from "lucide-react";
 
-// Skill groups
 const skillGroups = [
   {
-    title: "Languages",
-    skills: [
-      { name: "C++", icon: "/c++.webp" },
-    ],
+    title: "Programming Languages",
+    icon: Code2,
+    skills: ["C++", "Python", "JavaScript", "SQL"],
   },
   {
-    title: "Web Development",
-    skills: [
-      { name: "HTML 5", icon: "/html.webp" },
-      { name: "CSS 3", icon: "/css.svg" },
-      { name: "JavaScript", icon: "/JavaScript.webp" },
-      { name: "React Js", icon: "/react.webp" },
-      { name: "Node Js", icon: "/node.js.webp" },
-      { name: "Express Js", icon: "/express.webp" },
-      { name: "Mongo Db", icon: "/mongodb.webp" },
-    ],
+    title: "Frontend Development",
+    icon: PanelsTopLeft,
+    skills: ["HTML5", "CSS3", "React.js", "Next.js", "Tailwind CSS", "Responsive Web Design"],
   },
   {
-    title: "Tools",
-    skills: [
-      { name: "Git", icon: "/git.webp" },
-      { name: "GitHub", icon: "/github.webp" },
-      { name: "Netlify", icon: "/Netlify.webp" },
-      { name: "Render", icon: "/Render.webp" },
-    ],
+    title: "Backend Development",
+    icon: Server,
+    skills: ["Node.js", "Express.js", "NestJS", "REST APIs", "API Integration"],
+  },
+  {
+    title: "Databases & Caching",
+    icon: Database,
+    skills: ["PostgreSQL", "MongoDB", "Redis", "Database Design", "CRUD Operations"],
+  },
+  {
+    title: "Cloud & DevOps",
+    icon: Cloud,
+    skills: ["Docker", "Containerization", "Deployment Workflows", "Health Checks", "GitHub Webhooks", "CI/CD Concepts"],
+  },
+  {
+    title: "AI & Generative AI",
+    icon: BrainCircuit,
+    skills: ["Prompt Engineering", "AI-Assisted Development", "AI-Powered Features", "Model Integration Concepts"],
+  },
+  {
+    title: "Security & Authentication",
+    icon: ShieldCheck,
+    skills: ["Firebase Authentication", "GitHub OAuth", "AES-256-GCM", "Environment Variable Management"],
+  },
+  {
+    title: "Tools & Platforms",
+    icon: Wrench,
+    skills: ["Git", "GitHub", "VS Code", "Postman", "Cloudinary", "Netlify", "Render", "MetaMask", "Truffle", "Ganache"],
+  },
+  {
+    title: "Core Computer Science",
+    icon: Cpu,
+    skills: ["Data Structures & Algorithms", "OOP", "DBMS", "Operating Systems", "Computer Networks", "Software Engineering"],
   },
 ];
 
 export default function SkillsSection() {
   return (
     <section id="skills" className="section">
-      <div className="max-w-7xl mx-auto">
-
-        {/* Section Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-16"
+          viewport={{ once: true }}
+          className="text-center mb-14"
         >
-          Skills <span className="gradient-text">& Experience</span>
-        </motion.h2>
+          <p className="text-sm uppercase tracking-[0.28em] text-[#00F5D4]/70 mb-3">
+            What I work with
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Technical <span className="gradient-text">Skills</span>
+          </h2>
+          <p className="mt-5 max-w-2xl mx-auto text-white/60 leading-relaxed">
+            Technologies, tools, and computer science fundamentals I use to build
+            full-stack applications and explore AI-enabled software.
+          </p>
+        </motion.div>
 
-        {skillGroups.map((group, sectionIdx) => (
-          <div key={group.title} className="mb-14">
-
-            {/* Group Title */}
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: sectionIdx * 0.12 }}
-              className="text-2xl font-semibold mb-8 text-[#00F5D4]"
-            >
-              {group.title}
-            </motion.h3>
-
-            <div className="flex flex-wrap gap-x-14 gap-y-10">
-              {group.skills.map(({ name, icon }, idx) => (
-                <motion.div
-                  key={name}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, delay: idx * 0.07 }}
-                  whileHover={{ scale: 1.12, y: -6 }}
-                  className="flex flex-col items-center transition-all"
-                >
-                  {/* Glass Circle */}
-                  <div className="w-24 h-24 rounded-full flex items-center justify-center glass hover:shadow-[0_0_25px_rgba(0,245,212,0.3)] transition-all duration-300">
-                    <img
-                      src={icon}
-                      alt={name}
-                      className="w-14 h-14 object-contain"
-                    />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {skillGroups.map((group, index) => {
+            const Icon = group.icon;
+            return (
+              <motion.article
+                key={group.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: (index % 3) * 0.08 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className="glass rounded-2xl p-6 border border-white/10 hover:border-[#00F5D4]/30 transition-colors"
+              >
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-[#00F5D4]/10 text-[#00F5D4] flex items-center justify-center">
+                    <Icon size={21} strokeWidth={1.8} />
                   </div>
-
-                  <span className="mt-3 text-base text-white/80 font-medium">
-                    {name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        ))}
-
+                  <h3 className="text-lg font-semibold text-white">{group.title}</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {group.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm text-white/75"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
